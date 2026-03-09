@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="stylesheet">
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            background-color:wheat;
+            scroll-behavior: smooth;
+        }
+
+        header{
+            display: flex;
+            position: fixed;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            background-color: violet;
+            padding: 1rem 6rem;
+            box-shadow: 0 6px 20px black;
+        }
+
+        nav{
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        h1{
+            color: rgb(3, 81, 57);
+            font-size: 2rem;
+            font-weight: 900;
+        }
+        li{
+            list-style: none;
+        }
+        li a{
+            text-decoration: none;
+            color: black;
+            font-size: 1rem;
+        }
+        li a:hover{
+            color: aqua;
+        }
+        .damnlog{
+            background-color: rgb(3, 81, 57);
+            color: white;
+            padding:1rem 3rem;
+            transition: 0.5s ease-in-out;
+        }
+        .damnlog:hover{
+            color:aqua;
+            background: none;
+            border: 1px solid aqua;
+            transform: translateX(2rem);
+
+        }
+        section{
+            height: 100vh;
+            padding: 6rem 10%;
+        }
+        #hero-section{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url("trash.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+           
+            
+        }
+        .hero-box{
+            width: 40rem;
+        }
+        .hero-box h1{
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero-box p{
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+        #about{
+            background-color: white;
+            
+        }
+        #about h1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgb(3, 81, 57);;
+        }
+        .about-box{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .about-box p{
+            font-size: 1.2rem;
+            color:hsl(3, 80, 57);
+            width:25rem;
+        }
+        .about-image{
+            width: 25rem;
+        }
+        .about-image img{
+            width: 90%;
+            border-radius: 1rem;
+        
+        }
+        .about-image img:hover{
+            border-radius: 2rem;
+            border:4px solid rgb(3, 51, 24);
+            transform: translateY(-10px);
+        }
+        #About{
+            background-image: linear-gradient rgba(0,0,0,0.9) rgba(0,0,0,0.9) url("0077.jpg");
+        }
+        .login-btn.moree{
+            text-decoration: none;
+        }
+
+        #services{
+            background-color: hotpink;
+        }
+        .services-provie{
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .service-provie h1{
+            font-size: 2.5rem;
+        }
+        .services-provie span{
+            color: rgb(255, 153, 128);
+        }
+        .service-container{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 4rem;
+            
+        }
+        .service.boxx{
+            background-color: bisque;
+            padding: 2rem;
+            transition: 0.5s ease-in-out;
+        }
+        .service.box :hover{
+            transform: translateY(-10);
+        }
+        .service-image{
+            width: 5rem;
+            height: 5rem;
+            margin-bottom: 0.5rem;
+        }
+        .service-image img{
+            width:100%; 
+            height: 100%;
+            border-radius: 50%;
+        }
+        .services-box h2{
+            padding-bottom: 0.5rem;
+        }
+        .services-box p{
+            font-size: 1.2rem;
+            padding-bottom: 1rem;
+        }
+        .service-box a{
+            text-decoration: none;
+            color: rgb(255, 153, 128);
+        }
+
+       #contact{
+
+       }
+       .contact-image img{
+        width: 20rem;
+       }
+       .contact-us span{
+        color: rgb(255, 153, 128);
+       }
+       .contact-form{
+        margin-top: 1.5rem;
+       }
+       .contact-form input{
+        padding: 1rem 1rem;
+        outline: none;
+        margin-bottom: 0.5rem;
+        width: 25rem;
+        border: 1px solid rgb(151, 151, 151);
+        border-radius: 5px;
+       }
+       .contact-form textarea{
+        padding: 1rem;
+        border: 1px solid rgb(151, 151, 151);
+        border-radius: 5px;
+        width: 25rem;
+        height: 5rem;
+        outline: none;
+        margin-bottom: 0.5rem;
+       }
+       .contact-form .send{
+        border: none;
+        cursor: pointer;
+        border: 2px solid rgb(255, 153, 128);
+       }
+        
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Web Dev.</h1>
+        <nav>
+            <li><a href="#hero-section">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#partners">Partners</a></li>
+            <li><a href=""class="damnlog">Login</a></li>
+        </nav>
+    </header>
+
+    <section id="hero-section">
+        <div class="hero-box">
+    <h1>Awwnn!!! You Viewed My Page</h1>
+    <p>If this isn't love .. what is it.. it's too evident and quite loud..But i don't mind cause i can't reciprocate .. no matching energy for that. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, ducimus?</p>
+    <a href=""class="damnlog">Get Started</a>
+    </div>
+    </section>
+
+    <section id="about">
+        <h1>About us.</h1>
+
+        <div class="about-box">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto, alias sapiente, commodi deserunt dolorem voluptatem aut similique hic nostrum nisi quia ea necessitatibus soluta numquam autem ipsam libero excepturi nulla delectus reiciendis. Reiciendis commodi aliquam sequi unde, aut error aperiam eveniet ratione esse earum nisi nemo quos eligendi? Aspernatur tempore sunt commodi blanditiis ducimus debitis deleniti quas numquam quaerat fugiat suscipit ex, a id non libero eos quis soluta dolore architecto autem accusamus? Tempore magnam voluptatem maxime ipsam sed. Blanditiis earum hic quidem rem consequuntur tempora, iure maiores ex nisi deleniti. Architecto laudantium, nihil corporis laborum harum optio iure delectus.</p>
+
+            <div class="about-image">
+                <img src="nme.jpg" alt="">
+
+            </div>
+        </div>
+        
+    </section>
+    <section id="services">
+        <div class="service-provie">
+            <h1>Services|<span>Provide</span></h1>
+            <a href=""class="login-btn moree">view all services</a>
+
+        </div>
+        <div class="Service-container">
+            <div class="service-box">
+                <img src="eyess.png" alt="">
+                <h2>UI/UX</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus, numquam?</p>
+
+                <a href="">Learn more...</a>
+            </div>
+        </div>
+
+        <div class="service-boxx">
+            <div class="service-image">
+                <img src="undefined.jpeg" alt="">
+            </div>
+            <h2>Web Design</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates, ipsam?</p>
+
+            <a href="">Learn moree</a>
+        </div>
+    </section>
+
+    <section id="Contact">
+        <div class="contact-container">
+            <div class="contact-image">
+                <img src="Home-Based Member Services Jobs with Teladoc Health.jpeg" alt="">
+            </div>
+
+            <div class="contact-us"></div>
+            <h1>Contact |<span>Us</span></h1>
+            
+            <div class="contact-form">
+                <form >
+                    <input type="text"
+                    placeholder="username"><br>
+
+                    <input type="email"
+                    placeholder="jeniedeals@gmail.com"><br>
+
+                    <textarea name="message" id=""
+                    placeholder="Enter your message"></textarea><br>
+
+                    <button>Send Message</button>
+                    
+                </form>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

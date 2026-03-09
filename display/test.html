@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFT Preview Card</title>
+
+    <style>
+        /* ===== GENERAL PAGE STYLING ===== */
+        body {
+            background-color: hsl(217, 54%, 11%);
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* ===== CARD ===== */
+        .card {
+            background-color: hsl(216, 50%, 16%);
+            width: 320px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.4);
+        }
+
+        .card img.main {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: white;
+            margin-top: 20px;
+            font-size: 1.3rem;
+        }
+
+        .description {
+            color: hsl(215, 51%, 70%);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /* ===== PRICE + TIME ===== */
+        .details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .eth {
+            color: hsl(178, 100%, 50%);
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .time {
+            color: hsl(215, 51%, 70%);
+            font-size: 0.9rem;
+        }
+
+        /* ===== CREATOR ===== */
+        .creator {
+            display: flex;
+            align-items: center;
+            border-top: 1px solid hsl(215, 32%, 27%);
+            padding-top: 15px;
+        }
+
+        .creator img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-right: 15px;
+        }
+
+        .creator span {
+            color: hsl(215, 51%, 70%);
+            font-size: 0.9rem;
+        }
+
+        .creator b {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <img src="image-equilibrium.jpg" alt="" class="main">
+
+        <h2>Equilibrium #3429</h2>
+        <p class="description">
+            Our Equilibrium collection promotes balance and calm.
+        </p>
+
+        <div class="details">
+            <div class="eth">0.041 ETH</div>
+            <div class="time">3 days left</div>
+        </div>
+
+        <div class="creator">
+            <img src="image-avatar.png" alt="">
+            <span>Creation of <b>Jules Wyvern</b></span>
+        </div>
+    </div>
+
+</body>
+</html>

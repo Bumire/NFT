@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>coffee landing page</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            line-height: 1.6;
+            color:hsl(0, 0%, 32%) ;
+         } 
+        .navv{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px ;
+        }
+        .logo{
+            font-size: 2.7rem;
+            font-weight: bold;
+              color:white;
+              text-align: center;
+              margin-bottom: 4rem;
+        }
+        .but{
+            padding: 10px 20px;
+            text-decoration: none;
+            background: hsl(41, 52%, 49%);
+            color: white;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .but :hover{
+            background:hsl(43, 66%, 53%) ;
+        }
+        
+        .hero{
+            background-image: url(coffeebackground.jpg);
+            background-size: cover;
+            background-position: center;
+            color: wheat;
+            padding: 100px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 90vh;
+        }
+        
+        .hero-container h2{
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 4px (0,0,0,0.5);
+        }
+        .hero-container p{
+             font-size: 1.5em;
+             margin-bottom: 30px;
+             max-width: 600px;
+             margin-left: auto;
+             margin-right: auto;
+             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        .hero button {
+             font-size: 1.em;
+             padding: 12px 25px;
+             margin: 5px; 
+        }
+        section{
+            padding: 60px;
+            text-align: center;
+        }
+        .about{
+            background: hsl(0, 0%, 96%);
+        }
+        .product{
+           background: hsl(42, 100%, 95%) 
+        }
+        .testimonials{
+             background: hsl(0, 0%, 96%);
+        }
+        .must{
+            background: hsl(41, 53%, 47%);
+            color: white;
+        }
+        .must input{
+            padding: 10px;
+            width: 250px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        .must button{
+             padding: 10px 20px;
+             border: none;
+             background: hsl(43, 72%, 43%);
+             color: white;
+             border-radius: 5px;
+             cursor: pointer
+        }
+        .productgrid{
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .card{
+            background:hsl(0, 0%, 100%) ;
+            border-radius: 10px;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+       .card img{
+        width: 60%;
+        object-fit: cover;
+        border-radius: 10px;
+       }
+       .card button{
+        margin-top: 10px;
+        padding: 8px 12px;
+        background: hsl(41, 35%, 51%);
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+       }
+       .card button:hover{
+         background: hsl(43, 75%, 47%);
+       }
+       
+       .footer{
+        background:hsl(0, 1%, 21%) ;
+        color: white;
+        padding: 20px;
+       }
+       .hero-container p{
+        font-size: 1rem;
+        padding: 0  10px;
+       }
+       .productgrid{
+        flex-direction: column;
+        align-items: center;
+       } 
+       .card{
+        width: 80%;
+        margin-bottom: 20px;
+       }
+       .must input, .must button{
+         width: 70% 20%;
+        margin-bottom: 10px;
+       }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <nav class="navv">
+    <h1 class="logo">The Brown Brew</h1>
+    <!-- <a href=""class="but">Order now</a> -->
+     </nav>
+
+     <div class="hero-container">
+        <h2>Freshly Brewed Coffee Delivered To Your Door</h2>
+        <p>Premium beans, rich flavor, unforgettable aroma.</p>
+        <a href=""class="but deal">Order Now</a>
+    </div>
+     </header>
+
+    <section class="about">
+        <h2>Our story</h2>
+        <p> Brew Haven started with a simple mission: to bring the freshest, 
+      highest-quality coffee straight to your home. Ethically sourced beans, 
+      roasted to perfection for a rich, smooth taste every time.</p>
+    </section>
+     
+    <section class="Products">
+        <h2>Our Best sellers</h2>
+        <div class="productgrid">
+            <div class="card">
+                <img src="latte.jpg" alt="Espresso">
+                <h3>Espresso</h3>
+                <p>$3.00</p>
+                 <button>Order</button>
+            </div>
+                 <div class="card">
+                    <img src="Expresso.jpg" alt="Latte">
+                    <h3>Latte</h3>
+                    <p>$3.50</p>
+                    <button>Order</button>
+                 </div>
+                 <div class="card">
+                    <img src="capp.jpg" alt="Cappucino">
+                    <h3>Cappucino</h3>
+                    <p>$4.00</p>
+                    <button>Order</button>
+
+                 </div>
+        </div>
+
+          <section class="hero">
+        <h1>Freshly Brewed Bliss Delivered</h1>
+        <p>Premium ethically sourced beans. Roasted to perfection. Delivered warm to your door with love and aroma intact.</p>
+        <a href="#" class="btn">Start Your Order</a>
+    </section>
+
+    <section class="about" id="about">
+        <h2>Our Story</h2>
+        <p>The Brown Brew began with one passion: sharing the soul-soothing ritual of great coffee. We hand-select beans from sustainable farms, roast them in small batches, and deliver that fresh-cafe experience straight to you — because every cup should feel like coming home.</p>
+    </section>
+
+    <section class="products" id="products">
+        <h2>Our Best Sellers</h2>
+        <div class="product-grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?auto=format&fit=crop&q=80" alt="Espresso">
+                <div class="card-content">
+                    <h3>Signature Espresso</h3>
+                    <p class="price">$3.50</p>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&q=80" alt="Latte">
+                <div class="card-content">
+                    <h3>Creamy Latte</h3>
+                    <p class="price">$4.20</p>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+                 <div class="card">
+                <img src="hotty.jpg" alt="Latte">
+                <div class="card-content">
+                    <h3>Hot chocolate</h3>
+                    <p class="price">$4.20</p>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1517701550927-f4a6d8b6e2a6?auto=format&fit=crop&q=80" alt="Cappuccino">
+                <div class="card-content">
+                    <h3>Velvety Cappuccino</h3>
+                    <p class="price">$4.50</p>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    </section>
+    <section class="testimonials">
+        <h2>What our customers say</h2>
+        <p>“Best coffee I've ever tasted!”  Alex</p>
+        <p>“Fast delivery and amazing flavor.”  Maria</p>
+    </section>
+
+    <section id="must"class="must">
+        <h2>Start your coffee journey today</h2>
+        <p>Sign up for our newsletter and get exclusive offers!</p>
+        <input type="email" placeholder="Your email">
+        <button>Subscribe</button>
+    </section>
+    <footer class="lastly">
+        <p>&copy; 2026 The Brown Brew coffee | Follow us on social media</p>
+    </footer>
+
+    
+    
+</body>
+</html>

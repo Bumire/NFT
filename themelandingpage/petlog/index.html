@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pawly – Never Miss a Moment in Your Pet’s Care</title>
+
+ <style>
+/* pawly/style.css — Cute edition, merged with your original */
+
+:root {
+  --teal:        #64C6B7;
+  --teal-dark:   #4AA89A;
+  --peach:       #FFD3B6;
+  --soft-pink:   #FFB6C1;
+  --cream:       #FFF8F2;
+  --warm-gray:   #8A8A8A;
+  --text-dark:   #3A3A3A;
+  --success:     #A7E6D7;
+  --warning:     #FFE5B4;
+  --alert:       #FF9AA2;
+  --shadow-soft: 0 6px 20px rgba(100,198,183,0.18);
+  --shadow-hover: 0 12px 32px rgba(100,198,183,0.28);
+  --radius-lg:   20px;
+  --radius-md:   14px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(135deg, var(--cream) 0%, #fefaf5 100%);
+  color: var(--text-dark);
+  min-height: 100vh;
+  line-height: 1.55;
+}
+
+.container { max-width: 860px; margin: 0 auto; padding: 0 1rem; }
+
+header {
+  background: var(--teal);
+  color: white;
+  padding: 1.4rem 0;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: 'Comic Neue', cursive;
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.logo::after { content: "🐾"; margin-left: 0.3rem; }
+
+.tagline { font-size: 1rem; opacity: 0.94; margin-top: 0.2rem; }
+
+.section { margin: 2rem 0; }
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+h2 { font-family: 'Outfit', sans-serif; color: var(--teal-dark); font-size: 1.6rem; }
+
+.pet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.2rem;
+}
+
+.pet-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.22s ease;
+  text-align: center;
+}
+
+.pet-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.pet-avatar {
+  height: 110px;
+  background: linear-gradient(135deg, var(--peach), var(--soft-pink));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4.5rem;
+}
+
+.pet-info { padding: 1rem 0.8rem; }
+
+.pet-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--teal-dark);
+}
+
+.pet-breed {
+  font-size: 0.9rem;
+  color: var(--warm-gray);
+  margin-top: 0.2rem;
+}
+
+.pet-next {
+  font-size: 0.88rem;
+  color: var(--warm-gray);
+  margin-top: 0.4rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--warm-gray);
+}
+
+.empty-icon { font-size: 5.5rem; margin-bottom: 1rem; opacity: 0.8; }
+
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: white;
+  font-size: 2.2rem;
+  border: none;
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.fab:hover { transform: scale(1.1); box-shadow: var(--shadow-hover); }
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(58,58,58,0.5);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.modal-backdrop.visible { opacity: 1; visibility: visible; }
+
+.modal-content {
+  background: white;
+  border-radius: var(--radius-lg);
+  width: 92%;
+  max-width: 440px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  transform: scale(0.92);
+  opacity: 0;
+  transition: all 0.28s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.modal-backdrop.visible .modal-content { transform: scale(1); opacity: 1; }
+
+.modal-header {
+  padding: 1.4rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-title {
+  font-family: 'Comic Neue', cursive;
+  font-size: 2rem;
+  color: var(--teal-dark);
+}
+
+.modal-close {
+  position: absolute;
+  right: 1.4rem;
+  top: 1.2rem;
+  font-size: 2rem;
+  color: #aaa;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-body { padding: 1.6rem; }
+
+.form-group { margin-bottom: 1.4rem; }
+
+label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #555; }
+
+input, select {
+  width: 100%;
+  padding: 0.9rem;
+  border: 1.5px solid #e0e0e0;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(100,198,183,0.18);
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.btn-primary { background: var(--teal); color: white; border: none; }
+.btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+.btn-outline { background: white; border: 2px solid var(--teal); color: var(--teal-dark); }
+.btn-outline:hover { background: rgba(100,198,183,0.08); }
+
+.banner.warning {
+  background: #fff0e0;
+  border: 1px solid #ff9800;
+  border-radius: 12px;
+  padding: 1.1rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.hidden { display: none !important; }
+
+/* Timeline & summary (keep your original + minor cute tweaks) */
+.timeline-item {
+  background: #fdfdfd;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 0.9rem;
+  border-left: 5px solid var(--teal);
+  transition: all 0.18s;
+}
+
+.timeline-item:hover { transform: translateX(6px); }
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.4rem;
+  box-shadow: var(--shadow-soft);
+}
+
+ </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div>
+          <h1 class="logo">Pawly</h1>
+          <p class="tagline">Keeping tails wagging, one reminder at a time 🐾</p>
+        </div>
+        <div class="header-actions">
+          <button id="btn-settings" class="btn btn-outline">Settings</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div id="limit-banner" class="banner warning hidden">
+      <p>Free plan: 1 pet only. Unlock unlimited pets + more — one-time $3.99</p>
+      <button id="btn-upgrade">Upgrade Now</button>
+    </div>
+
+    <section id="pets-section" class="section">
+      <div class="section-header">
+        <h2>Your Fur Babies</h2>
+        <button id="btn-add-pet" class="btn btn-primary">+ Add Pet</button>
+      </div>
+      <div id="pets-grid" class="pet-grid"></div>
+      <div id="empty-pets" class="empty-state">
+        <div class="empty-icon">🐾</div>
+        <h3>Welcome to Pawly!</h3>
+        <p>Add your first pet — let’s make care easy and full of love 💕</p>
+      </div>
+    </section>
+
+    <section id="timeline-section" class="section">
+      <div class="section-header">
+        <h2>Upcoming Care</h2>
+        <button id="btn-add-care" class="btn btn-primary small">+ Add Event</button>
+      </div>
+      <div id="timeline" class="timeline"></div>
+      <div id="empty-timeline" class="empty-state hidden">
+        <p>No upcoming care yet. Add an event for your buddy!</p>
+      </div>
+    </section>
+
+    <section id="summary-section" class="card summary-card">
+      <h3>Today’s Overview</h3>
+      <div id="today-summary">No tasks today — extra cuddles time! 🐶</div>
+      <div id="streak" class="streak">Streak: 0 days ✨</div>
+    </section>
+
+  </main>
+
+  <button id="fab" class="fab" title="Quick Add">+</button>
+
+  <div id="modal-backdrop" class="modal-backdrop hidden"></div>
+
+  <!-- Add Pet Modal -->
+  <div id="add-pet-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Add Your Cute Buddy</h2>
+        <button class="modal-close" id="btn-close-pet">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="pet-form">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="pet-name" placeholder="Luna, Max..." required/>
+          </div>
+          <div class="form-group">
+            <label>Species</label>
+            <select id="pet-species" required>
+              <option value="">Select</option>
+              <option value="Dog">Dog 🐶</option>
+              <option value="Cat">Cat 😺</option>
+              <option value="Rabbit">Rabbit 🐰</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Breed / Type</label>
+            <select id="pet-breed" required>
+              <option value="">Select breed</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Birthday (optional)</label>
+            <input type="date" id="pet-birthday"/>
+          </div>
+          <div class="modal-buttons">
+            <button type="button" class="btn btn-outline" id="btn-cancel-pet">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save & Hug 💕</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Care Event Modal -->
+  <div id="add-care-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Add Care Event</h2>
+        <button class="modal-close" id="btn-close-care">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="care-form">
+          <div class="form-group">
+            <label>Pet</label>
+            <select id="care-pet" required></select>
+          </div>
+          <div class="form-group">
+            <label>Type</label>
+            <select id="care-type" required>
+              <option value="Vet Visit">Vet Visit 💉</option>
+              <option value="Grooming">Grooming ✂️</option>
+              <option value="Medication">Medication 💊</option>
+              <option value="Vaccination">Vaccination 🩺</option>
+              <option value="Custom">Custom</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="care-date" required/>
+          </div>
+          <div class="form-group">
+            <label>Time</label>
+            <input type="time" id="care-time" required/>
+          </div>
+          <div class="form-group">
+            <label>Notes</label>
+            <textarea id="care-notes" placeholder="e.g., annual checkup"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Remind me</label>
+            <select id="care-reminder">
+              <option value="0">On the day</option>
+              <option value="1">1 day before</option>
+              <option value="3">3 days before</option>
+            </select>
+          </div>
+          <div class="modal-buttons">
+            <button type="button" class="btn btn-outline" id="btn-cancel-care">Cancel</button>
+            <button type="submit" class="btn btn-primary">Add Event 🐾</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="sccript.js"></script>
+</body>
+</html>

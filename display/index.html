@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Brown Brew | Premium Coffee & Treats</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Tenor+Sans&family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=70&w=1200&fm=webp" fetchpriority="high">
+    <style>
+        :root {
+            --brown-deep:    #2c1a0f;
+            --brown-mid:     #6b4e31;
+            --brown-warm:    #c17a3f;
+            --brown-light:   #d68e58;
+            --cream:         #fff8f0;
+            --cream-2:       #fdf4ea;
+            --text-dark:     #3a2b1f;
+            --text-mid:      #6b4e31;
+            --glass-warm:    rgba(255, 248, 240, 0.45);
+            --glass-border:  rgba(193, 122, 63, 0.25);
+            --glass-shine:   rgba(255, 255, 255, 0.7);
+            --glass-shadow:  rgba(107, 78, 49, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Tenor Sans', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* ─── CUSTOM CURSOR ─── */
+        #cursor {
+            position: fixed;
+            width: 10px; height: 10px;
+            background: var(--brown-warm);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transition: transform 0.15s;
+            mix-blend-mode: multiply;
+        }
+        #cursor-ring {
+            position: fixed;
+            width: 40px; height: 40px;
+            border: 1.5px solid var(--brown-warm);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            transition: width 0.3s, height 0.3s;
+        }
+        body:hover #cursor-ring { opacity: 1; }
+
+        /* ─── GRAIN TEXTURE ─── */
+        body::after {
+            content: '';
+            position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 9997;
+        }
+
+        /* ─── AMBIENT BLOBS ─── */
+        .blob-bg {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+            animation: blobFloat 12s ease-in-out infinite alternate;
+        }
+        .blob-1 { width: 600px; height: 600px; background: rgba(193,122,63,0.12); top: -15%; left: -10%; animation-delay: 0s; }
+        .blob-2 { width: 500px; height: 500px; background: rgba(214,142,88,0.1); top: 30%; right: -10%; animation-delay: -4s; }
+        .blob-3 { width: 450px; height: 450px; background: rgba(107,78,49,0.08); bottom: 10%; left: 20%; animation-delay: -8s; }
+        @keyframes blobFloat {
+            from { transform: translate(0,0) scale(1); }
+            to { transform: translate(30px, 20px) scale(1.05); }
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            position: fixed; top: 0; width: 100%;
+            z-index: 1000;
+            padding: 2rem 6%;
+            transition: all 0.5s ease;
+        }
+        header.scrolled {
+            background: rgba(255, 248, 240, 0.75);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1.2rem 6%;
+            box-shadow: 0 4px 30px rgba(107,78,49,0.08);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.7rem;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.4s;
+            display: flex; flex-direction: column; gap: 1px;
+        }
+        .logo-sub {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 0.5rem;
+            letter-spacing: 0.45em;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            transition: color 0.4s;
+        }
+        header.scrolled .logo { color: var(--brown-deep); }
+        header.scrolled .logo-sub { color: var(--text-mid); opacity: 0.6; }
+
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+        .nav-links a {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s;
+            padding-bottom: 3px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 0; height: 1px;
+            background: var(--brown-warm);
+            transition: width 0.4s cubic-bezier(0.16,1,0.3,1);
+        }
+        .nav-links a:hover { color: white; }
+        .nav-links a:hover::after { width: 100%; }
+        header.scrolled .nav-links a { color: var(--text-mid); }
+        header.scrolled .nav-links a:hover { color: var(--brown-warm); }
+
+        .btn-nav {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--brown-deep);
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.6);
+            padding: 0.75rem 1.8rem;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .btn-nav:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(107,78,49,0.2);
+        }
+        header.scrolled .btn-nav {
+            background: var(--brown-warm);
+            color: white;
+            border-color: var(--brown-warm);
+        }
+        header.scrolled .btn-nav:hover { background: var(--brown-light); }
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            text-align: center;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=70&w=1200&fm=webp') center/cover;
+            transform: scale(1.06);
+            animation: heroKen 14s ease-out forwards;
+        }
+        @keyframes heroKen { to { transform: scale(1); } }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(44,26,15,0.55) 0%,
+                rgba(44,26,15,0.25) 50%,
+                rgba(255,248,240,0.6) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative; z-index: 2;
+            display: flex; flex-direction: column; align-items: center; gap: 2.5rem;
+            padding: 0 5%;
+        }
+
+        .hero-badge {
+            font-size: 0.58rem;
+            letter-spacing: 0.55em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.75);
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.25);
+            padding: 0.6rem 2rem;
+            border-radius: 100px;
+            opacity: 0;
+            animation: riseIn 0.9s 0.3s forwards;
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(3.5rem, 9vw, 7.5rem);
+            font-weight: 400;
+            color: white;
+            line-height: 1;
+            letter-spacing: -0.01em;
+            opacity: 0;
+            animation: riseIn 1s 0.6s forwards;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: #f5d9b8;
+        }
+
+        /* The big glassmorphism hero card */
+        .hero-glass-card {
+            background: var(--glass-warm);
+            backdrop-filter: blur(28px) saturate(160%);
+            -webkit-backdrop-filter: blur(28px) saturate(160%);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem 4rem;
+            display: flex; align-items: center; gap: 3.5rem;
+            box-shadow:
+                0 8px 32px var(--glass-shadow),
+                inset 0 1px 0 var(--glass-shine);
+            opacity: 0;
+            animation: riseIn 1s 0.9s forwards;
+            max-width: 800px;
+        }
+
+        .hero-glass-card p {
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            line-height: 1.9;
+            color: rgba(44,26,15,0.75);
+            max-width: 280px;
+            text-align: left;
+        }
+
+        .hero-vline { width: 1px; height: 60px; background: var(--glass-border); flex-shrink: 0; }
+
+        .btn-primary {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: white;
+            background: var(--brown-warm);
+            padding: 1.1rem 2.8rem;
+            border-radius: 100px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.35s;
+            box-shadow: 0 8px 28px rgba(193,122,63,0.4);
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            background: var(--brown-light);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 35px rgba(193,122,63,0.45);
+        }
+
+        .btn-ghost {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            background: transparent;
+            padding: 1.1rem 0;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s;
+            white-space: nowrap;
+            display: inline-block;
+        }
+        .btn-ghost:hover { color: var(--brown-warm); border-bottom-color: var(--brown-warm); }
+
+        @keyframes riseIn {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── MARQUEE ─── */
+        .marquee {
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            background: rgba(255,248,240,0.8);
+            backdrop-filter: blur(12px);
+            padding: 1.2rem 0;
+            overflow: hidden;
+        }
+        .marquee-track {
+            display: flex; white-space: nowrap;
+            animation: ticker 30s linear infinite;
+        }
+        .marquee-track span {
+            font-family: 'DM Serif Display', serif;
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--text-mid);
+            padding: 0 2.5rem;
+        }
+        .marquee-track .dot { color: var(--brown-warm); font-style: normal; padding: 0; }
+        @keyframes ticker {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ─── SECTION WRAP ─── */
+        .section-wrap { padding: 7rem 6%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
+
+        .label-row {
+            display: flex; align-items: center; gap: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+        .label-line { height: 1px; width: 35px; background: var(--brown-warm); }
+        .label-text {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 0.58rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--brown-warm);
+        }
+
+        .section-heading {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 400;
+            color: var(--brown-deep);
+            line-height: 1.1;
+            margin-bottom: 4rem;
+        }
+        .section-heading em {
+            font-style: italic;
+            color: var(--brown-warm);
+        }
+
+        /* ─── PRODUCT CARDS (glass) ─── */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+        }
+
+        .product-card {
+            background: var(--glass-warm);
+            backdrop-filter: blur(20px) saturate(160%);
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px var(--glass-shadow), inset 0 1px 0 var(--glass-shine);
+            transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px var(--glass-shadow), inset 0 1px 0 var(--glass-shine);
+            border-color: rgba(193,122,63,0.4);
+        }
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -60%;
+            width: 40%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: skewX(-15deg);
+            transition: left 0.6s ease;
+            pointer-events: none;
+        }
+        .product-card:hover::before { left: 130%; }
+
+        .product-card-img {
+            width: 100%; height: 200px; object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .product-card:hover .product-card-img { transform: scale(1.07); }
+
+        .product-card-body { padding: 1.6rem; }
+        .product-card-body h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: var(--brown-deep);
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.01em;
+        }
+        .product-card-body .price {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--brown-warm);
+            margin-bottom: 1.2rem;
+        }
+        .btn-card {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--brown-deep);
+            background: rgba(255,248,240,0.8);
+            border: 1px solid var(--glass-border);
+            padding: 0.65rem 1.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            backdrop-filter: blur(8px);
+        }
+        .btn-card:hover {
+            background: var(--brown-warm);
+            color: white;
+            border-color: var(--brown-warm);
+            box-shadow: 0 6px 20px rgba(193,122,63,0.35);
+        }
+
+        /* ─── SECTION BACKGROUND ALTERNATION ─── */
+        .section-tinted {
+            background: linear-gradient(135deg, rgba(193,122,63,0.06) 0%, rgba(255,248,240,0) 60%);
+        }
+
+        /* ─── TESTIMONIALS ─── */
+        #testimonials { background: linear-gradient(160deg, var(--brown-deep) 0%, #4a2e18 100%); }
+        #testimonials .section-wrap { max-width: 1400px; }
+        #testimonials .label-text { color: rgba(214,142,88,0.8); }
+        #testimonials .label-line { background: rgba(214,142,88,0.6); }
+        #testimonials .section-heading { color: var(--cream); }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .t-card {
+            background: rgba(255,248,240,0.07);
+            backdrop-filter: blur(20px) saturate(150%);
+            -webkit-backdrop-filter: blur(20px) saturate(150%);
+            border: 1px solid rgba(255,248,240,0.12);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .t-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 1rem; left: 2rem;
+            font-family: 'DM Serif Display', serif;
+            font-size: 6rem;
+            color: rgba(193,122,63,0.15);
+            line-height: 1;
+        }
+        .t-card:hover {
+            background: rgba(255,248,240,0.1);
+            border-color: rgba(193,122,63,0.35);
+            transform: translateY(-8px);
+        }
+
+        .t-profile { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+        .t-profile img {
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(193,122,63,0.5);
+        }
+        .t-profile-info { display: flex; flex-direction: column; gap: 2px; }
+        .t-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--cream);
+        }
+        .t-stars { color: #f5c842; font-size: 0.75rem; letter-spacing: 3px; }
+
+        .t-text {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 0.85rem;
+            line-height: 1.9;
+            color: rgba(255,248,240,0.7);
+        }
+
+        /* ─── NEWSLETTER ─── */
+        .newsletter-section {
+            background: var(--cream-2);
+            border-top: 1px solid var(--glass-border);
+        }
+        .newsletter-inner {
+            max-width: 1400px; margin: 0 auto;
+            padding: 7rem 6%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .newsletter-text h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-weight: 400;
+            color: var(--brown-deep);
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+        }
+        .newsletter-text h2 em { font-style: italic; color: var(--brown-warm); }
+        .newsletter-text p {
+            font-size: 0.82rem;
+            line-height: 1.9;
+            color: var(--text-mid);
+            letter-spacing: 0.05em;
+        }
+
+        .newsletter-form-wrap {
+            background: var(--glass-warm);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px var(--glass-shadow), inset 0 1px 0 var(--glass-shine);
+        }
+
+        .newsletter-form-wrap p {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            color: var(--text-mid);
+            margin-bottom: 1.8rem;
+            text-transform: uppercase;
+        }
+
+        .form-field {
+            display: flex;
+            background: rgba(255,255,255,0.7);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 8px rgba(107,78,49,0.06);
+        }
+        .form-field input {
+            flex: 1;
+            padding: 1.1rem 1.8rem;
+            background: transparent;
+            border: none;
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-dark);
+            outline: none;
+        }
+        .form-field input::placeholder { color: rgba(107,78,49,0.45); }
+        .form-field button {
+            padding: 0.9rem 2rem;
+            margin: 4px;
+            background: var(--brown-warm);
+            color: white;
+            border: none;
+            border-radius: 100px;
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 0.62rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .form-field button:hover { background: var(--brown-light); }
+
+        .newsletter-note {
+            font-size: 0.65rem;
+            color: rgba(107,78,49,0.5);
+            letter-spacing: 0.08em;
+            margin-top: 1.2rem;
+            text-align: center;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--brown-deep);
+            padding: 5rem 6% 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .footer-grid {
+            max-width: 1400px; margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 5rem;
+            margin-bottom: 5rem;
+        }
+        .footer-brand .footer-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        .footer-brand p {
+            font-size: 0.78rem;
+            line-height: 2;
+            color: rgba(255,248,240,0.45);
+            font-style: italic;
+            max-width: 280px;
+        }
+        .footer-col h4 {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 0.58rem;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: var(--brown-warm);
+            margin-bottom: 2rem;
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.9rem; }
+        .footer-col ul li a {
+            font-size: 0.78rem;
+            color: rgba(255,248,240,0.45);
+            text-decoration: none;
+            transition: color 0.3s;
+            letter-spacing: 0.05em;
+        }
+        .footer-col ul li a:hover { color: var(--cream); }
+        .footer-hours p {
+            font-size: 0.78rem;
+            color: rgba(255,248,240,0.45);
+            margin-bottom: 0.7rem;
+            letter-spacing: 0.05em;
+        }
+        .footer-bottom {
+            max-width: 1400px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 1px solid rgba(255,248,240,0.08);
+            padding-top: 2rem;
+        }
+        .footer-bottom p {
+            font-size: 0.68rem;
+            color: rgba(255,248,240,0.3);
+            letter-spacing: 0.1em;
+        }
+
+        /* ─── SCROLL REVEAL ─── */
+        .reveal { opacity: 0; transform: translateY(35px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+        .reveal.in { opacity: 1; transform: none; }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonial-grid { grid-template-columns: 1fr; }
+            .newsletter-inner { grid-template-columns: 1fr; gap: 3rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .product-grid { grid-template-columns: 1fr; }
+            .hero-glass-card { flex-direction: column; gap: 1.5rem; padding: 2rem; }
+            .hero-vline { width: 60px; height: 1px; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+    <div class="blob-bg blob-1"></div>
+    <div class="blob-bg blob-2"></div>
+    <div class="blob-bg blob-3"></div>
+
+    <!-- ─── HEADER ─── -->
+    <header id="siteHeader">
+        <nav>
+            <a href="#" class="logo">
+                The Brown Brew
+                <span class="logo-sub">Premium Coffee & Treats</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#coffee">Coffee</a></li>
+                <li><a href="#tea">Tea</a></li>
+                <li><a href="#desserts">Desserts</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+            </ul>
+            <a href="#coffee" class="btn-nav">Order Now</a>
+        </nav>
+    </header>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">Ethically Sourced · Freshly Roasted · Delivered Warm</div>
+            <h1>Freshly<br>Brewed <em>Bliss</em></h1>
+            <div class="hero-glass-card">
+                <p>Premium beans sourced from the world's finest estates. Roasted to perfection. Delivered warm to your door.</p>
+                <div class="hero-vline"></div>
+                <div style="display:flex;flex-direction:column;gap:1rem;align-items:flex-start;">
+                    <a href="#coffee" class="btn-primary">View Menu</a>
+                    <a href="#testimonials" class="btn-ghost">Read Reviews</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── MARQUEE ─── -->
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>Creamy Latte</span><span class="dot">✦</span>
+            <span>Classic Earl Grey</span><span class="dot">✦</span>
+            <span>Bold Espresso</span><span class="dot">✦</span>
+            <span>Fudge Brownie</span><span class="dot">✦</span>
+            <span>Caramel Shake</span><span class="dot">✦</span>
+            <span>Berry Cheesecake</span><span class="dot">✦</span>
+            <span>Lux Hot Chocolate</span><span class="dot">✦</span>
+            <span>Calm Chamomile</span><span class="dot">✦</span>
+            <!-- repeat -->
+            <span>Creamy Latte</span><span class="dot">✦</span>
+            <span>Classic Earl Grey</span><span class="dot">✦</span>
+            <span>Bold Espresso</span><span class="dot">✦</span>
+            <span>Fudge Brownie</span><span class="dot">✦</span>
+            <span>Caramel Shake</span><span class="dot">✦</span>
+            <span>Berry Cheesecake</span><span class="dot">✦</span>
+            <span>Lux Hot Chocolate</span><span class="dot">✦</span>
+            <span>Calm Chamomile</span><span class="dot">✦</span>
+        </div>
+    </div>
+
+    <!-- ─── COFFEE ─── -->
+    <div class="section-tinted" style="position:relative;z-index:1;">
+        <div class="section-wrap" id="coffee">
+            <div class="label-row reveal"><span class="label-line"></span><span class="label-text">Signature Drinks</span></div>
+            <h2 class="section-heading reveal">Our Special <em>Coffees</em></h2>
+            <div class="product-grid">
+                <div class="product-card reveal delay-1">
+                    <img src="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&q=80&w=800" alt="Latte" class="product-card-img" loading="lazy">
+                    <div class="product-card-body">
+                        <h3>Creamy Latte</h3>
+                        <p class="price">$4.20</p>
+                        <a href="#" class="btn-card">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-card reveal delay-2">
+                    <img src="milkyshaa.jpg" alt="Caramel Shake" class="product-card-img" loading="lazy">
+                    <div class="product-card-body">
+                        <h3>Caramel Shake</h3>
+                        <p class="price">$4.20</p>
+                        <a href="#" class="btn-card">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-card reveal delay-3">
+                    <img src="hotty.jpg" alt="Hot Chocolate" class="product-card-img" loading="lazy">
+                    <div class="product-card-body">
+                        <h3>Lux Hot Chocolate</h3>
+                        <p class="price">$4.50</p>
+                        <a href="#" class="btn-card">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-card reveal delay-4">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=800" alt="Espresso" class="product-card-img" loading="lazy">
+                    <div class="product-card-body">
+                        <h3>Bold Espresso</h3>
+                        <p class="price">$3.50</p>
+                        <a href="#" class="btn-card">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── TEA ─── -->
+    <div style="position:relative;z-index:1;">
+        <div class="section-wrap" id="tea">
+            <div class="label-row reveal"><span class="label-line"></span><span class="label-text">Curated Blends</span></div>
+            <h2 class="section-heading reveal">Signature <em>Teas</em></h2>
+            <div class="product-grid">
+                <div class="product-card reveal delay-1">
+                    <img src="sixteen-miles-out-lzQCA9sWpw0-unsplash.jpg" alt="Black Tea" class="product-card-img" loading="lazy">
+                    <div class="product-card-body">
+                        <h3>Classic Earl Grey</h3>
+                        <p class="price">$3.80</p>
+                        <a href="#" class="btn-card">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-card reveal delay-2">
+                    <img src="yellowtea.jpg" alt="Yellow Tea" class="product-card-img" loading="lazy">
+                    <div class="product-card-body">
+                        <h3>Golden Brew</h3>
+                        <p class="price">$3.80</p>
+                        <a href="#" class="btn-card">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-card reveal delay-3">
+                    <img src="sip.jpg" alt="Chamomile" class="product-card-img" loading="lazy">
+                    <div class="product-card-body">
+                        <h3>Calm Chamomile</h3>
+                        <p class="price">$3.80</p>
+                        <a href="#" class="btn-card">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-card reveal delay-4">
+                    <img src="monika-grabkowska-VbkrCpVF7yk-unsplash.jpg" alt="Green Tea" class="product-card-img" loading="lazy">
+                    <div class="product-card-body">
+                        <h3>Pure Green Tea</h3>
+                        <p class="price">$3.50</p>
+                        <a href="#" class="btn-card">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── DESSERTS ─── -->
+    <div class="section-tinted" style="position:relative;z-index:1;">
+        <div class="section-wrap" id="desserts">
+            <div class="label-row reveal"><span class="label-line"></span><span class="label-text">Sweet Selection</span></div>
+            <h2 class="section-heading reveal">Artisan <em>Desserts</em></h2>
+            <div class="product-grid">
+                <div class="product-card reveal delay-1">
+                    <img src="https://images.unsplash.com/photo-1559622214-f8a9850965bb?auto=format&fit=crop&q=80&w=800" alt="Brownie" class="product-card-img" loading="lazy">
+                    <div class="product-card-body">
+                        <h3>Fudge Brownie</h3>
+                        <p class="price">$4.00</p>
+                        <a href="#" class="btn-card">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-card reveal delay-2">
+                    <img src="sweettoth.jpg" alt="Croissant" class="product-card-img" loading="lazy">
+                    <div class="product-card-body">
+                        <h3>Butter Croissant</h3>
+                        <p class="price">$4.00</p>
+                        <a href="#" class="btn-card">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-card reveal delay-3">
+                    <img src="chocosweet.jpg" alt="Chocolate Cake" class="product-card-img" loading="lazy">
+                    <div class="product-card-body">
+                        <h3>Chocolate Cake</h3>
+                        <p class="price">$3.50</p>
+                        <a href="#" class="btn-card">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-card reveal delay-4">
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&q=80&w=800" alt="Cheesecake" class="product-card-img" loading="lazy">
+                    <div class="product-card-body">
+                        <h3>Berry Cheesecake</h3>
+                        <p class="price">$5.50</p>
+                        <a href="#" class="btn-card">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── TESTIMONIALS ─── -->
+    <section id="testimonials" style="background:linear-gradient(160deg,#2c1a0f 0%,#4a2e18 100%);position:relative;z-index:1;">
+        <div class="section-wrap">
+            <div class="label-row reveal"><span class="label-line"></span><span class="label-text">Guest Reviews</span></div>
+            <h2 class="section-heading reveal" style="color:var(--cream);">What Our <em>Guests</em> Say</h2>
+            <div class="testimonial-grid">
+                <div class="t-card reveal delay-1">
+                    <div class="t-profile">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100" alt="Sarah K.">
+                        <div class="t-profile-info">
+                            <span class="t-name">Sarah K.</span>
+                            <span class="t-stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <p class="t-text">"The aroma alone is enough to wake me up. Delivery is always prompt, and the latte is still perfectly frothy when it arrives. An absolute ritual now."</p>
+                </div>
+                <div class="t-card reveal delay-2">
+                    <div class="t-profile">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100" alt="Alex M.">
+                        <div class="t-profile-info">
+                            <span class="t-name">Alex M.</span>
+                            <span class="t-stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <p class="t-text">"Hands down the best coffee I've ever ordered online. Their Earl Grey is also a hidden gem. It's become my daily ritual."</p>
+                </div>
+                <div class="t-card reveal delay-3">
+                    <div class="t-profile">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100" alt="Maria James">
+                        <div class="t-profile-info">
+                            <span class="t-name">Maria James</span>
+                            <span class="t-stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <p class="t-text">"Exceptional service, beautiful packaging, and flavours that speak for themselves. The Berry Cheesecake is worth every penny."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── NEWSLETTER ─── -->
+    <section class="newsletter-section">
+        <div class="newsletter-inner">
+            <div class="newsletter-text reveal">
+                <div class="label-row" style="margin-bottom:1.2rem;"><span class="label-line"></span><span class="label-text">Inner Circle</span></div>
+                <h2>Join the<br><em>Brew Crew</em></h2>
+                <p style="margin-top:1.2rem;">Get 15% off your first order, plus exclusive access to seasonal blends, brewing guides, and early drops — delivered straight to your inbox.</p>
+            </div>
+            <div class="newsletter-form-wrap reveal delay-2">
+                <p>Enter your email to claim your welcome offer</p>
+                <div class="form-field">
+                    <input type="email" placeholder="your@email.com">
+                    <button type="submit">Join Now</button>
+                </div>
+                <p class="newsletter-note">No spam. Unsubscribe anytime. We respect your inbox.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="footer-logo">The Brown Brew</span>
+                <p>"Premium ethically sourced beans. Roasted to perfection. Crafted into moments of pure, unhurried pleasure."</p>
+            </div>
+            <div class="footer-col">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="#coffee">Coffee</a></li>
+                    <li><a href="#tea">Teas</a></li>
+                    <li><a href="#desserts">Desserts</a></li>
+                    <li><a href="#">Seasonal Blends</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Sourcing Ethics</a></li>
+                    <li><a href="#">Wholesale</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-hours">
+                <h4>Hours</h4>
+                <p>Monday – Friday</p>
+                <p style="color:rgba(255,248,240,0.7);margin-bottom:1rem;">7:00 AM – 9:00 PM</p>
+                <p>Saturday – Sunday</p>
+                <p style="color:rgba(255,248,240,0.7);">8:00 AM – 10:00 PM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The Brown Brew. All Rights Reserved.</p>
+            <p>Premium Coffee & Treats</p>
+        </div>
+    </footer>
+
+    <script>
+        // ─── Cursor
+        const cur = document.getElementById('cursor');
+        const ring = document.getElementById('cursor-ring');
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            cur.style.left = (mx - 5) + 'px';
+            cur.style.top = (my - 5) + 'px';
+        });
+        function animateRing() {
+            rx += (mx - rx - 20) * 0.13;
+            ry += (my - ry - 20) * 0.13;
+            ring.style.left = rx + 'px';
+            ring.style.top = ry + 'px';
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
+        document.querySelectorAll('a,button').forEach(el => {
+            el.addEventListener('mouseenter', () => { cur.style.transform = 'scale(3)'; ring.style.width = '64px'; ring.style.height = '64px'; });
+            el.addEventListener('mouseleave', () => { cur.style.transform = 'scale(1)'; ring.style.width = '40px'; ring.style.height = '40px'; });
+        });
+
+        // ─── Header scroll
+        const hdr = document.getElementById('siteHeader');
+        window.addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 60));
+
+        // ─── Scroll reveal
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    </script>
+</body>
+</html>

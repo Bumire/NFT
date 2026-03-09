@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COD Homes Nigeria — Build, Buy & Manage Property From Anywhere</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --cream:#FAF8F5;
+  --cream2:#F2EFE9;
+  --cream3:#E8E3DA;
+  --ink:#111110;
+  --ink2:#2A2926;
+  --mid:#6B6860;
+  --soft:#9C9890;
+  --line:#E0DDD7;
+  --green:#1A6B45;
+  --green-bg:#EBF5EF;
+  --green-border:#B8DFC9;
+  --orange:#C4531A;
+  --orange-bg:#FDF0E8;
+  --orange-border:#F0C4A8;
+  --white:#FFFFFF;
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:400;
+  overflow-x:hidden;
+  line-height:1.5;
+}
+
+/* ─── NAV ─── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  height:64px;
+  background:rgba(250,248,245,0.92);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;
+}
+.nav-logo{
+  font-size:17px;font-weight:800;color:var(--ink);
+  text-decoration:none;letter-spacing:-0.4px;
+  display:flex;align-items:center;gap:8px;
+}
+.nav-logo-pip{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--green);
+}
+.nav-center{
+  display:flex;align-items:center;gap:4px;
+  position:absolute;left:50%;transform:translateX(-50%);
+}
+.nav-center a{
+  font-size:13px;font-weight:500;color:var(--mid);
+  text-decoration:none;padding:6px 14px;border-radius:8px;
+  transition:color 0.15s,background 0.15s;
+}
+.nav-center a:hover{color:var(--ink);background:var(--cream2)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-btn-ghost{
+  font-size:13px;font-weight:500;color:var(--ink);
+  text-decoration:none;padding:7px 16px;border-radius:8px;
+  border:1px solid var(--line);
+  transition:background 0.15s;
+}
+.nav-btn-ghost:hover{background:var(--cream2)}
+.nav-btn-solid{
+  font-size:13px;font-weight:600;color:var(--white);
+  text-decoration:none;padding:7px 18px;border-radius:8px;
+  background:var(--ink);transition:opacity 0.15s;
+}
+.nav-btn-solid:hover{opacity:0.85}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;
+  padding:120px 40px 80px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  background:var(--cream);
+  position:relative;
+  overflow:hidden;
+}
+
+/* subtle background arc */
+.hero::before{
+  content:'';
+  position:absolute;
+  width:900px;height:900px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(26,107,69,0.06) 0%,transparent 70%);
+  top:-200px;left:50%;transform:translateX(-50%);
+  pointer-events:none;
+}
+
+.hero-tag{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--green-bg);
+  border:1px solid var(--green-border);
+  color:var(--green);
+  font-size:12px;font-weight:600;
+  padding:5px 14px;border-radius:100px;
+  margin-bottom:32px;
+  letter-spacing:0.1px;
+}
+.hero-tag-dot{width:5px;height:5px;border-radius:50%;background:var(--green)}
+
+.hero-h1{
+  font-size:clamp(40px,5.5vw,76px);
+  font-weight:800;line-height:1.05;
+  letter-spacing:-2.5px;
+  color:var(--ink);
+  max-width:840px;
+  margin-bottom:22px;
+}
+.hero-h1 .hl{color:var(--green)}
+
+.hero-sub{
+  font-size:18px;line-height:1.7;
+  color:var(--mid);font-weight:400;
+  max-width:520px;margin:0 auto 40px;
+}
+
+.hero-btns{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+  margin-bottom:64px;
+}
+.btn-dark{
+  background:var(--ink);color:var(--white);
+  font-size:14px;font-weight:600;
+  padding:13px 28px;border-radius:10px;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:opacity 0.15s;display:inline-block;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
+.btn-dark:hover{opacity:0.82}
+.btn-light{
+  background:var(--white);color:var(--ink);
+  font-size:14px;font-weight:500;
+  padding:13px 28px;border-radius:10px;
+  text-decoration:none;border:1px solid var(--line);cursor:pointer;
+  transition:background 0.15s;display:inline-block;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
+.btn-light:hover{background:var(--cream2)}
+
+.hero-proof{
+  display:flex;align-items:center;gap:32px;
+  flex-wrap:wrap;justify-content:center;
+}
+.hp-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;color:var(--mid);font-weight:500;
+}
+.hp-item svg{flex-shrink:0}
+.hp-sep{width:1px;height:16px;background:var(--line)}
+
+/* ─── STAT BAND ─── */
+.stat-band{
+  background:var(--ink);
+  padding:48px 40px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;
+}
+.stat-band-inner{
+  max-width:1100px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:rgba(255,255,255,0.08);
+}
+.sb-item{
+  background:var(--ink);
+  padding:32px 36px;
+}
+.sb-num{
+  font-size:clamp(32px,3.5vw,48px);font-weight:800;
+  color:var(--white);letter-spacing:-1.5px;
+  line-height:1;margin-bottom:6px;
+}
+.sb-num span{color:var(--green);font-size:0.65em;font-weight:700}
+.sb-label{font-size:13px;color:rgba(255,255,255,0.45);font-weight:400}
+
+/* ─── SECTION WRAPPER ─── */
+.wrap{max-width:1100px;margin:0 auto}
+.section{padding:96px 40px}
+.sec-label{
+  font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--green);
+  margin-bottom:12px;display:block;
+}
+.sec-h{
+  font-size:clamp(28px,3vw,42px);
+  font-weight:800;letter-spacing:-1px;
+  line-height:1.1;color:var(--ink);
+  margin-bottom:14px;
+}
+.sec-p{
+  font-size:16px;line-height:1.75;
+  color:var(--mid);font-weight:400;
+  max-width:500px;
+}
+
+/* ─── HOW IT WORKS ─── */
+.how{background:var(--white)}
+.how-head{margin-bottom:56px}
+.how-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:14px;overflow:hidden;
+}
+.how-card{
+  background:var(--white);
+  padding:36px 28px;
+  transition:background 0.2s;
+}
+.how-card:hover{background:var(--cream)}
+.how-num{
+  font-size:11px;font-weight:700;letter-spacing:2px;
+  color:var(--soft);margin-bottom:20px;
+}
+.how-icon{font-size:26px;margin-bottom:14px;display:block}
+.how-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.how-desc{font-size:13px;line-height:1.75;color:var(--mid)}
+
+.how-escrow{
+  margin-top:20px;
+  background:var(--cream);border:1px solid var(--line);
+  border-radius:12px;padding:28px 32px;
+  display:flex;align-items:center;gap:40px;flex-wrap:wrap;
+}
+.he-text{flex:1;min-width:280px}
+.he-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.he-desc{font-size:13px;color:var(--mid);line-height:1.7}
+.he-stages{
+  display:flex;align-items:center;gap:0;flex-wrap:wrap;
+}
+.he-stage{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:0 20px;position:relative;
+}
+.he-stage:not(:last-child)::after{
+  content:'→';position:absolute;right:-10px;top:10px;
+  color:var(--soft);font-size:12px;
+}
+.he-stage-dot{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--green-bg);border:2px solid var(--green-border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;
+}
+.he-stage-label{font-size:10px;font-weight:600;color:var(--mid);white-space:nowrap}
+.he-stage-pct{font-size:11px;font-weight:700;color:var(--green)}
+
+/* ─── CALCULATOR ─── */
+.calc{background:var(--cream2)}
+.calc-head{margin-bottom:40px}
+.calc-box{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:16px;overflow:hidden;
+}
+.calc-form{padding:36px}
+.calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+.cf-label{
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;color:var(--mid);
+  display:block;margin-bottom:7px;
+}
+.cf-select{
+  width:100%;
+  background:var(--cream);
+  border:1px solid var(--line);
+  color:var(--ink);
+  padding:11px 14px;
+  font-size:14px;
+  border-radius:9px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  outline:none;
+  cursor:pointer;
+  transition:border-color 0.15s;
+  -webkit-appearance:none;appearance:none;
+}
+.cf-select:focus{border-color:var(--ink)}
+.calc-btn{
+  background:var(--ink);color:var(--white);
+  padding:13px 32px;font-size:14px;font-weight:700;
+  border:none;border-radius:9px;cursor:pointer;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  transition:opacity 0.15s;
+}
+.calc-btn:hover{opacity:0.82}
+
+.calc-result{
+  display:none;
+  border-top:1px solid var(--line);
+  background:var(--cream);
+  padding:32px 36px;
+}
+.calc-result.show{display:block}
+.cr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:16px}
+.cr-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--soft);margin-bottom:5px}
+.cr-val{font-size:28px;font-weight:800;color:var(--ink);letter-spacing:-0.5px}
+.cr-sub{font-size:12px;color:var(--mid);margin-top:3px}
+.cr-note{font-size:12px;color:var(--soft);line-height:1.6}
+
+/* ─── TRUST ─── */
+.trust{background:var(--white)}
+.trust-head{margin-bottom:56px;max-width:600px}
+.trust-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:16px;margin-bottom:16px;
+}
+.trust-card{
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:14px;padding:32px 28px;
+  transition:border-color 0.2s,background 0.2s;
+}
+.trust-card:hover{border-color:var(--cream3);background:var(--cream2)}
+.tc-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;
+  padding:4px 10px;border-radius:100px;
+  margin-bottom:16px;
+}
+.tc-green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.tc-orange{background:var(--orange-bg);color:var(--orange);border:1px solid var(--orange-border)}
+.tc-ink{background:var(--cream3);color:var(--ink2);border:1px solid var(--line)}
+.tc-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.tc-desc{font-size:13px;line-height:1.75;color:var(--mid)}
+
+.trust-bottom{
+  background:var(--cream);border:1px solid var(--line);
+  border-radius:14px;padding:32px;
+  display:grid;grid-template-columns:1fr 1fr;gap:32px;
+  align-items:center;
+}
+.tb-left .tb-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.tb-left p{font-size:13px;color:var(--mid);line-height:1.7}
+.tb-right{display:flex;flex-direction:column;gap:10px}
+.tb-row{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 14px;border-radius:9px;
+  background:var(--white);border:1px solid var(--line);
+  font-size:13px;color:var(--mid);
+}
+.tb-row-icon{font-size:16px;flex-shrink:0}
+
+/* ─── SERVICES ─── */
+.services{background:var(--cream2)}
+.svc-head{margin-bottom:56px;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.svc-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.svc-card{
+  background:var(--white);border:1px solid var(--line);
+  border-radius:12px;padding:28px 24px;
+  transition:border-color 0.2s,box-shadow 0.2s;
+}
+.svc-card:hover{border-color:var(--cream3);box-shadow:0 4px 16px rgba(17,17,16,0.06)}
+.svc-icon{font-size:24px;margin-bottom:16px;display:block}
+.svc-name{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.svc-desc{font-size:12px;line-height:1.7;color:var(--mid)}
+
+/* ─── INVESTMENT ─── */
+.invest{background:var(--white)}
+.invest-head{margin-bottom:48px;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.invest-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.invest-card{
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:14px;overflow:hidden;
+  transition:box-shadow 0.2s,transform 0.2s;
+}
+.invest-card:hover{box-shadow:0 8px 32px rgba(17,17,16,0.1);transform:translateY(-2px)}
+.ic-thumb{
+  height:160px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:40px;
+}
+.ic-flats{background:linear-gradient(135deg,#E8F4EE,#C8E8D8)}
+.ic-student{background:linear-gradient(135deg,#E8EDF4,#C8D4E8)}
+.ic-shortlet{background:linear-gradient(135deg,#F4EDE8,#E8D4C8)}
+.ic-body{padding:24px}
+.ic-type{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:6px}
+.ic-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.ic-loc{font-size:12px;color:var(--mid);margin-bottom:18px}
+.ic-metrics{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);padding-top:16px;gap:8px;
+}
+.icm-val{font-size:15px;font-weight:800;color:var(--ink);letter-spacing:-0.3px}
+.icm-label{font-size:10px;color:var(--soft);margin-top:2px;font-weight:500}
+.icm-green{color:var(--green)!important}
+
+/* ─── GALLERY ─── */
+.gallery{background:var(--cream)}
+.gallery-head{margin-bottom:40px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  grid-template-rows:220px 220px;
+  gap:8px;
+}
+.gi{
+  border-radius:12px;overflow:hidden;
+  position:relative;cursor:pointer;
+  transition:transform 0.2s;
+}
+.gi:hover{transform:scale(1.01)}
+.gi.tall{grid-row:1/3}
+.gi-bg1{background:linear-gradient(160deg,#C8D8C0,#90B080)}
+.gi-bg2{background:linear-gradient(160deg,#C8C0B8,#A09088)}
+.gi-bg3{background:linear-gradient(160deg,#B8C8D8,#8098A8)}
+.gi-bg4{background:linear-gradient(160deg,#D8C8B0,#B0987C)}
+.gi-bg5{background:linear-gradient(160deg,#C0C8B8,#88A080)}
+.gi-inner{
+  position:absolute;inset:0;
+  display:flex;align-items:flex-end;
+  padding:18px;
+  background:linear-gradient(to top,rgba(17,17,16,0.55) 0%,transparent 55%);
+}
+.gi-tag{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);display:block;margin-bottom:3px}
+.gi-name{font-size:13px;font-weight:700;color:var(--white)}
+.gi-sub{font-size:11px;color:rgba(255,255,255,0.65);margin-top:2px}
+
+/* ─── TESTIMONIALS ─── */
+.testi{background:var(--white)}
+.testi-head{margin-bottom:48px}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tcard{
+  background:var(--cream);border:1px solid var(--line);
+  border-radius:14px;padding:28px;
+  display:flex;flex-direction:column;gap:20px;
+}
+.tcard-stars{color:var(--orange);font-size:13px;letter-spacing:1px}
+.tcard-text{
+  font-size:14px;line-height:1.8;color:var(--ink2);
+  font-style:italic;flex:1;
+}
+.tcard-author{display:flex;align-items:center;gap:12px}
+.tcard-av{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--cream3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:800;color:var(--ink);flex-shrink:0;
+}
+.tcard-name{font-size:13px;font-weight:700;color:var(--ink)}
+.tcard-where{font-size:11px;color:var(--mid);margin-top:2px}
+
+/* ─── LAND LISTINGS ─── */
+.lands{background:var(--cream2)}
+.lands-head{margin-bottom:40px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px}
+.land-table{
+  background:var(--white);border:1px solid var(--line);
+  border-radius:14px;overflow:hidden;
+}
+.land-thead{
+  display:grid;grid-template-columns:2fr 1fr 1fr 120px 100px;
+  gap:16px;padding:14px 24px;
+  background:var(--cream);border-bottom:1px solid var(--line);
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;color:var(--soft);
+}
+.land-row{
+  display:grid;grid-template-columns:2fr 1fr 1fr 120px 100px;
+  gap:16px;padding:18px 24px;
+  border-bottom:1px solid var(--line);
+  align-items:center;
+  transition:background 0.15s;
+}
+.land-row:last-child{border-bottom:none}
+.land-row:hover{background:var(--cream)}
+.lr-name{font-size:14px;font-weight:700;color:var(--ink)}
+.lr-loc{font-size:12px;color:var(--mid);margin-top:2px}
+.lr-size{font-size:14px;font-weight:600;color:var(--ink)}
+.lr-price{font-size:14px;font-weight:700;color:var(--ink)}
+.lr-sub{font-size:11px;color:var(--mid);margin-top:1px}
+.lr-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  background:var(--green-bg);border:1px solid var(--green-border);
+  color:var(--green);font-size:11px;font-weight:600;
+  padding:4px 10px;border-radius:100px;
+}
+.lr-btn{
+  background:var(--ink);color:var(--white);
+  font-size:12px;font-weight:600;
+  padding:7px 16px;border-radius:7px;
+  text-decoration:none;display:inline-block;
+  transition:opacity 0.15s;white-space:nowrap;
+}
+.lr-btn:hover{opacity:0.8}
+
+/* ─── INSPECTION ─── */
+.inspect{background:var(--white)}
+.inspect-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;
+}
+.insp-features{margin-top:28px;display:flex;flex-direction:column;gap:10px}
+.insp-row{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:14px 16px;background:var(--cream);
+  border:1px solid var(--line);border-radius:10px;
+}
+.insp-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.insp-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.insp-desc{font-size:12px;color:var(--mid);line-height:1.6}
+
+.insp-form{
+  background:var(--cream);border:1px solid var(--line);
+  border-radius:16px;padding:32px;
+}
+.form-title{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.form-sub{font-size:13px;color:var(--mid);margin-bottom:24px}
+.ff{margin-bottom:14px}
+.ff label{
+  display:block;font-size:11px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;
+  color:var(--mid);margin-bottom:6px;
+}
+.ff input,.ff select,.ff textarea{
+  width:100%;
+  background:var(--white);
+  border:1px solid var(--line);
+  color:var(--ink);padding:11px 13px;
+  font-size:14px;border-radius:9px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  outline:none;transition:border-color 0.15s;
+  -webkit-appearance:none;
+}
+.ff input:focus,.ff select:focus,.ff textarea:focus{border-color:var(--ink)}
+.ff textarea{height:80px;resize:none}
+.ff select option{background:var(--white)}
+.ff-submit{
+  width:100%;background:var(--ink);color:var(--white);
+  padding:13px;font-size:14px;font-weight:700;border:none;
+  border-radius:9px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;
+  transition:opacity 0.15s;margin-top:4px;
+}
+.ff-submit:hover{opacity:0.82}
+
+/* ─── CONTACT ─── */
+.contact{background:var(--cream2)}
+.contact-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;
+}
+.ct-head{margin-bottom:28px}
+.ct-head .sec-h{font-size:clamp(28px,3.5vw,46px)}
+.ct-para{font-size:15px;line-height:1.75;color:var(--mid);margin-bottom:32px}
+.ct-channels{display:flex;flex-direction:column;gap:8px}
+.ch{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;
+  background:var(--white);border:1px solid var(--line);
+  border-radius:11px;text-decoration:none;
+  transition:border-color 0.15s,box-shadow 0.15s;
+}
+.ch:hover{border-color:var(--cream3);box-shadow:0 2px 12px rgba(17,17,16,0.07)}
+.ch-left{display:flex;align-items:center;gap:14px}
+.ch-icon{
+  width:38px;height:38px;border-radius:9px;
+  background:var(--cream);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+  flex-shrink:0;
+}
+.ch-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:2px}
+.ch-val{font-size:14px;font-weight:600;color:var(--ink)}
+.ch-arrow{color:var(--soft);font-size:16px}
+
+.ct-right{
+  background:var(--white);border:1px solid var(--line);
+  border-radius:16px;padding:32px;
+}
+.ctr-title{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.ctr-sub{font-size:13px;color:var(--mid);margin-bottom:24px}
+
+/* ─── SIGNALS ─── */
+.signals{background:var(--white)}
+.signals-inner{}
+.sig-head{margin-bottom:40px}
+.sig-row{
+  display:grid;grid-template-columns:repeat(6,1fr);
+  gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  margin-bottom:16px;
+}
+.sig-item{
+  background:var(--cream);padding:24px 20px;text-align:center;
+  transition:background 0.2s;
+}
+.sig-item:hover{background:var(--cream2)}
+.sig-emoji{font-size:22px;margin-bottom:10px;display:block}
+.sig-label{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.sig-val{font-size:11px;color:var(--mid)}
+
+.diaspora-band{
+  background:var(--cream2);border:1px solid var(--line);
+  border-radius:12px;padding:24px 28px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+}
+.db-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--soft);margin-bottom:10px}
+.db-flags{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.db-flag{font-size:13px;color:var(--mid);font-weight:500}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--ink);
+  padding:56px 40px 0;
+}
+.footer-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:48px;padding-bottom:48px;
+}
+.ft-logo{
+  font-size:17px;font-weight:800;color:var(--white);
+  display:flex;align-items:center;gap:8px;margin-bottom:12px;
+}
+.ft-logo-pip{width:7px;height:7px;border-radius:50%;background:var(--green)}
+.ft-about{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.8;max-width:260px}
+.ft-col h6{
+  font-size:10px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(255,255,255,0.25);
+  margin-bottom:16px;
+}
+.ft-col a{
+  display:block;font-size:13px;color:rgba(255,255,255,0.45);
+  text-decoration:none;margin-bottom:9px;
+  transition:color 0.15s;
+}
+.ft-col a:hover{color:var(--white)}
+.footer-base{
+  max-width:1100px;margin:0 auto;
+  border-top:1px solid rgba(255,255,255,0.07);
+  padding:18px 0;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:10px;
+}
+.fb-copy{font-size:12px;color:rgba(255,255,255,0.2)}
+.fb-cac{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(26,107,69,0.15);border:1px solid rgba(26,107,69,0.25);
+  color:rgba(100,200,140,0.8);font-size:11px;font-weight:600;
+  padding:5px 14px;border-radius:100px;
+}
+
+/* ─── HAMBURGER ─── */
+.nav-hamburger{
+  display:none;flex-direction:column;justify-content:center;
+  gap:5px;cursor:pointer;padding:8px;border:none;
+  background:transparent;
+}
+.nav-hamburger span{
+  display:block;width:22px;height:2px;
+  background:var(--ink);border-radius:2px;
+  transition:all 0.25s;
+}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.mobile-menu{
+  display:none;
+  position:fixed;top:64px;left:0;right:0;bottom:0;
+  background:var(--cream);z-index:998;
+  flex-direction:column;padding:24px 24px 40px;
+  overflow-y:auto;
+  border-top:1px solid var(--line);
+}   
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  font-size:18px;font-weight:600;color:var(--ink);
+  text-decoration:none;padding:16px 0;
+  border-bottom:1px solid var(--line);
+  display:block;
+}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu .mm-cta{
+  margin-top:24px;background:var(--ink);color:var(--white)!important;
+  text-align:center;border-radius:10px;padding:16px!important;
+  border-bottom:none!important;font-size:15px!important;
+}
+.mobile-menu .mm-ghost{
+  margin-top:10px;background:var(--white);color:var(--ink)!important;
+  text-align:center;border-radius:10px;padding:16px!important;
+  border:1px solid var(--line);font-size:15px!important;
+  border-bottom:1px solid var(--line)!important;
+}
+
+/* ─── TABLET ─── */
+@media(max-width:1024px){
+  .nav{padding:0 24px}
+  .nav-center{display:none}
+  .nav-right{display:none}
+  .nav-hamburger{display:flex}
+  .hero{padding:100px 24px 64px}
+  .stat-band-inner{grid-template-columns:1fr 1fr}
+  .section{padding:72px 24px}
+  .how-grid{grid-template-columns:1fr 1fr}
+  .calc-grid{grid-template-columns:1fr 1fr}
+  .trust-grid{grid-template-columns:1fr 1fr}
+  .trust-bottom{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .invest-cards{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .gi.tall{grid-row:auto}
+  .testi-grid{grid-template-columns:1fr 1fr}
+  .land-thead{display:none}
+  .land-row{grid-template-columns:1fr 1fr;gap:12px}
+  .inspect-inner{grid-template-columns:1fr;gap:40px}
+  .contact-inner{grid-template-columns:1fr;gap:32px}
+  .sig-row{grid-template-columns:repeat(3,1fr)}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .footer-base{padding:18px 0}
+  .he-stages{display:none}
+  .diaspora-band{flex-direction:column;align-items:flex-start}
+}
+
+/* ─── MOBILE ─── */
+@media(max-width:640px){
+  .nav{padding:0 16px;height:56px}
+  .mobile-menu{top:56px}
+
+  .hero{padding:88px 16px 56px;min-height:auto}
+  .hero-h1{font-size:34px;letter-spacing:-1.2px}
+  .hero-sub{font-size:15px}
+  .hero-btns{flex-direction:column;gap:10px;width:100%}
+  .btn-dark,.btn-light{width:100%;text-align:center;padding:15px 20px}
+  .hero-proof{flex-direction:column;align-items:flex-start;gap:10px}
+  .hp-sep{display:none}
+  .hero-tag{font-size:11px}
+
+  .stat-band-inner{grid-template-columns:1fr 1fr}
+  .sb-item{padding:20px 16px}
+  .sb-num{font-size:28px}
+  .sb-label{font-size:11px}
+
+  .section{padding:56px 16px}
+  .sec-h{font-size:26px;letter-spacing:-0.5px}
+  .sec-p{font-size:14px}
+
+  .how-grid{grid-template-columns:1fr}
+  .how-escrow{flex-direction:column;gap:20px;padding:20px}
+
+  .calc-grid{grid-template-columns:1fr}
+  .cr-grid{grid-template-columns:1fr;gap:20px}
+  .cr-val{font-size:22px}
+
+  .trust-grid{grid-template-columns:1fr}
+  .trust-bottom{grid-template-columns:1fr;padding:20px}
+
+  .svc-grid{grid-template-columns:1fr}
+
+  .invest-cards{grid-template-columns:1fr}
+
+  .gallery-grid{grid-template-columns:1fr;grid-template-rows:auto}
+  .gi{height:180px}
+  .gi.tall{grid-row:auto;height:220px}
+
+  .testi-grid{grid-template-columns:1fr}
+
+  .land-thead{display:none}
+  .land-row{
+    grid-template-columns:1fr;
+    gap:10px;padding:16px;
+  }
+  .land-row>*{text-align:left}
+  .lr-btn{display:inline-block;margin-top:4px}
+
+  .insp-form{padding:20px}
+  .inspect-inner{gap:32px}
+
+  .contact-inner{gap:28px}
+  .ct-right{padding:20px}
+
+  .sig-row{grid-template-columns:1fr 1fr}
+  .sig-item{padding:18px 12px}
+  .sig-emoji{font-size:18px}
+  .sig-label{font-size:12px}
+  .sig-val{font-size:10px}
+  .diaspora-band{flex-direction:column;align-items:flex-start;padding:20px}
+  .db-flags{gap:8px}
+  .db-flag{font-size:12px}
+
+  .footer-inner{grid-template-columns:1fr;gap:32px;padding-bottom:36px}
+  footer{padding:40px 16px 0}
+  .footer-base{flex-direction:column;align-items:flex-start;gap:10px;padding:16px 0}
+
+  .he-stages{display:none}
+  .how-escrow .he-text{min-width:0;width:100%}
+
+  .invest-head,.gallery-head,.lands-head,.svc-head{flex-direction:column;align-items:flex-start;gap:16px}
+  .invest-head .btn-dark,.gallery-head .btn-dark,.lands-head .btn-dark{width:100%;text-align:center}
+
+  .tcard{padding:20px}
+  .trust-card{padding:24px 20px}
+  .svc-card{padding:22px 18px}
+  .how-card{padding:28px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-pip"></div>
+    COD Homes Nigeria
+  </a>
+  <div class="nav-center">
+    <a href="#how">How It Works</a>
+    <a href="#services">Services</a>
+    <a href="#invest">Invest</a>
+    <a href="#lands">Verified Lands</a>
+    <a href="#projects">Projects</a>
+  </div>
+  <div class="nav-right">
+    <a href="#calculator" class="nav-btn-ghost">Cost Calculator</a>
+    <a href="#contact" class="nav-btn-solid">Book Consultation</a>
+  </div>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#how" onclick="closeMenu()">How It Works</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#invest" onclick="closeMenu()">Invest</a>
+  <a href="#lands" onclick="closeMenu()">Verified Lands</a>
+  <a href="#projects" onclick="closeMenu()">Projects</a>
+  <a href="#calculator" onclick="closeMenu()">Cost Calculator</a>
+  <a href="#contact" onclick="closeMenu()" class="mm-cta">Book Consultation</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">
+    <div class="hero-tag-dot"></div>
+    Trusted by Nigerians in 12+ countries
+  </div>
+
+  <h1 class="hero-h1">
+    Build, buy, or manage property<br>
+    in Nigeria — from <span class="hl">anywhere.</span>
+  </h1>
+
+  <p class="hero-sub">
+    COD Homes is Nigeria's property platform built for the diaspora. We handle everything on the ground so you never have to trust the wrong person again.
+  </p>
+
+  <div class="hero-btns">
+    <a href="#calculator" class="btn-dark">Calculate Build Cost</a>
+    <a href="#how" class="btn-light">See How It Works</a>
+  </div>
+
+  <div class="hero-proof">
+    <div class="hp-item">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#EBF5EF"/><path d="M4 7l2 2 4-4" stroke="#1A6B45" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Milestone escrow payments
+    </div>
+    <div class="hp-sep"></div>
+    <div class="hp-item">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#EBF5EF"/><path d="M4 7l2 2 4-4" stroke="#1A6B45" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Weekly video & drone reports
+    </div>
+    <div class="hp-sep"></div>
+    <div class="hp-item">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#EBF5EF"/><path d="M4 7l2 2 4-4" stroke="#1A6B45" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      DHL document delivery worldwide
+    </div>
+    <div class="hp-sep"></div>
+    <div class="hp-item">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#EBF5EF"/><path d="M4 7l2 2 4-4" stroke="#1A6B45" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      CAC registered company
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stat-band">
+  <div class="stat-band-inner">
+    <div class="sb-item">
+      <div class="sb-num">200<span>+</span></div>
+      <div class="sb-label">Projects completed across Nigeria</div>
+    </div>
+    <div class="sb-item">
+      <div class="sb-num">18</div>
+      <div class="sb-label">States we actively build in</div>
+    </div>
+    <div class="sb-item">
+      <div class="sb-num">₦0</div>
+      <div class="sb-label">Lost to fraud in our entire history</div>
+    </div>
+    <div class="sb-item">
+      <div class="sb-num">100<span>%</span></div>
+      <div class="sb-label">Fund accountability on every project</div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section how" id="how">
+  <div class="wrap">
+    <div class="how-head">
+      <span class="sec-label">The Process</span>
+      <h2 class="sec-h">Six steps. Total transparency.<br>You're in control throughout.</h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-card">
+        <span class="how-icon">📞</span>
+        <div class="how-num">STEP 01</div>
+        <div class="how-title">Free Consultation</div>
+        <p class="how-desc">We listen to your vision, budget, location, and timeline. Video call, WhatsApp, or email. No commitment, no charge.</p>
+      </div>
+      <div class="how-card">
+        <span class="how-icon">🔍</span>
+        <div class="how-num">STEP 02</div>
+        <div class="how-title">Land Verification</div>
+        <p class="how-desc">We physically inspect the land, run government title checks, survey verification, and neighbourhood review — before any money moves.</p>
+      </div>
+      <div class="how-card">
+        <span class="how-icon">📐</span>
+        <div class="how-num">STEP 03</div>
+        <div class="how-title">Architecture & Design</div>
+        <p class="how-desc">Our architects produce your plans. You review and approve remotely. Every detail confirmed in writing before construction begins.</p>
+      </div>
+      <div class="how-card">
+        <span class="how-icon">🏗️</span>
+        <div class="how-num">STEP 04</div>
+        <div class="how-title">Construction Tracking</div>
+        <p class="how-desc">Weekly drone footage, photos, and live video calls. Your money releases in stages — foundation, structure, roofing, finishing — never in bulk.</p>
+      </div>
+      <div class="how-card">
+        <span class="how-icon">🏠</span>
+        <div class="how-num">STEP 05</div>
+        <div class="how-title">Completion & Handover</div>
+        <p class="how-desc">Final inspection. Keys secured. Full handover report delivered. You choose when and how you take possession.</p>
+      </div>
+      <div class="how-card">
+        <span class="how-icon">📦</span>
+        <div class="how-num">STEP 06</div>
+        <div class="how-title">Document Delivery</div>
+        <p class="how-desc">Every original — C of O, deed of assignment, approvals — packaged and shipped to your door via DHL or FedEx. Tracked and insured.</p>
+      </div>
+    </div>
+
+    <div class="how-escrow">
+      <div class="he-text">
+        <div class="he-title">How milestone payments protect your money</div>
+        <p class="he-desc">Your funds sit in escrow and only release when each stage is physically verified by our team and approved by you. You never hand over the full amount upfront — ever.</p>
+      </div>
+      <div class="he-stages">
+        <div class="he-stage">
+          <div class="he-stage-dot">🏛️</div>
+          <div class="he-stage-label">Foundation</div>
+          <div class="he-stage-pct">20%</div>
+        </div>
+        <div class="he-stage">
+          <div class="he-stage-dot">🧱</div>
+          <div class="he-stage-label">Structure</div>
+          <div class="he-stage-pct">25%</div>
+        </div>
+        <div class="he-stage">
+          <div class="he-stage-dot">🏠</div>
+          <div class="he-stage-label">Roofing</div>
+          <div class="he-stage-pct">20%</div>
+        </div>
+        <div class="he-stage">
+          <div class="he-stage-dot">🪟</div>
+          <div class="he-stage-label">Finishing</div>
+          <div class="he-stage-pct">25%</div>
+        </div>
+        <div class="he-stage">
+          <div class="he-stage-dot">🔑</div>
+          <div class="he-stage-label">Handover</div>
+          <div class="he-stage-pct">10%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="section calc" id="calculator">
+  <div class="wrap">
+    <div class="calc-head">
+      <span class="sec-label">Build Cost Calculator</span>
+      <h2 class="sec-h">Get an instant estimate<br>for your build.</h2>
+      <p class="sec-p">No signup needed. Select your preferences and see a cost estimate in seconds.</p>
+    </div>
+    <div class="calc-box">
+      <div class="calc-form">
+        <div class="calc-grid">
+          <div>
+            <label class="cf-label">City / State</label>
+            <select class="cf-select" id="calcCity">
+              <option value="">Select location</option>
+              <option value="lagos">Lagos</option>
+              <option value="abuja">Abuja (FCT)</option>
+              <option value="ph">Port Harcourt</option>
+              <option value="enugu">Enugu</option>
+              <option value="ibadan">Ibadan</option>
+              <option value="other">Other State</option>
+            </select>
+          </div>
+          <div>
+            <label class="cf-label">House Type</label>
+            <select class="cf-select" id="calcType">
+              <option value="">Select type</option>
+              <option value="bungalow">Bungalow</option>
+              <option value="duplex">Duplex (2 Floors)</option>
+              <option value="triplex">Triplex (3 Floors)</option>
+              <option value="flats">Block of Flats</option>
+              <option value="commercial">Commercial Building</option>
+            </select>
+          </div>
+          <div>
+            <label class="cf-label">Bedrooms</label>
+            <select class="cf-select" id="calcBeds">
+              <option value="">Select bedrooms</option>
+              <option value="2">2 Bedrooms</option>
+              <option value="3">3 Bedrooms</option>
+              <option value="4">4 Bedrooms</option>
+              <option value="5">5 Bedrooms</option>
+              <option value="6">6+ Bedrooms</option>
+            </select>
+          </div>
+          <div>
+            <label class="cf-label">Land Size</label>
+            <select class="cf-select" id="calcLand">
+              <option value="">Select plot size</option>
+              <option value="300">300 sqm — Standard</option>
+              <option value="450">450 sqm — Large</option>
+              <option value="600">600 sqm — Double</option>
+              <option value="1000">1,000 sqm — Corner piece</option>
+            </select>
+          </div>
+          <div>
+            <label class="cf-label">Finishing Level</label>
+            <select class="cf-select" id="calcFinish">
+              <option value="">Select finish</option>
+              <option value="basic">Basic</option>
+              <option value="standard">Standard</option>
+              <option value="premium">Premium</option>
+              <option value="luxury">Luxury</option>
+            </select>
+          </div>
+          <div>
+            <label class="cf-label">Show Cost In</label>
+            <select class="cf-select" id="calcCurrency">
+              <option value="ngn">Nigerian Naira (₦)</option>
+              <option value="gbp">British Pounds (£)</option>
+              <option value="usd">US Dollars ($)</option>
+              <option value="cad">Canadian Dollar (CA$)</option>
+              <option value="eur">Euro (€)</option>
+            </select>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="runCalc()">Calculate My Estimate →</button>
+      </div>
+      <div class="calc-result" id="calcResult">
+        <div class="cr-grid">
+          <div>
+            <div class="cr-label">Estimated Build Cost</div>
+            <div class="cr-val" id="crCost">—</div>
+            <div class="cr-sub">Materials · Labour · Supervision</div>
+          </div>
+          <div>
+            <div class="cr-label">Estimated Timeline</div>
+            <div class="cr-val" id="crTime">—</div>
+            <div class="cr-sub">Foundation to handover</div>
+          </div>
+          <div>
+            <div class="cr-label">COD Management Fee</div>
+            <div class="cr-val" id="crFee">—</div>
+            <div class="cr-sub">10% of total project cost</div>
+          </div>
+        </div>
+        <p class="cr-note">Estimate based on current Nigerian market rates. Confirmed during your free consultation — no commitment required to get one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="section trust" id="trust">
+  <div class="wrap">
+    <div class="trust-head">
+      <span class="sec-label">Security & Transparency</span>
+      <h2 class="sec-h">We didn't ask you to trust us.<br>We built systems that make it unnecessary.</h2>
+      <p class="sec-p">The biggest risk when building from abroad isn't the construction — it's sending money to the wrong people. Every feature we built exists to prevent exactly that.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="tc-chip tc-green">🔐 Escrow</div>
+        <div class="tc-title">Milestone Payment Protection</div>
+        <p class="tc-desc">Your money never moves in a lump sum. It sits protected and only releases when each construction stage is physically verified by our team and signed off by you.</p>
+      </div>
+      <div class="trust-card">
+        <div class="tc-chip tc-green">🚁 Drone</div>
+        <div class="tc-title">Weekly Drone & Video Reports</div>
+        <p class="tc-desc">Unfiltered drone footage and ground-level video of your site every week. You see exactly what's happening. If there's a delay, you hear it from us first — not weeks later.</p>
+      </div>
+      <div class="trust-card">
+        <div class="tc-chip tc-green">📹 Live</div>
+        <div class="tc-title">Live Construction Camera</div>
+        <p class="tc-desc">Premium option: a live feed camera on site. Log in from London, Houston, or Toronto and watch your house being built in real time. This is what no other company in Nigeria offers.</p>
+      </div>
+      <div class="trust-card">
+        <div class="tc-chip tc-orange">📁 Vault</div>
+        <div class="tc-title">Digital Document Vault</div>
+        <p class="tc-desc">Survey plan, land title, building approvals, contracts, receipts — all stored in your secure online vault. Accessible from anywhere in the world at any time.</p>
+      </div>
+      <div class="trust-card">
+        <div class="tc-chip tc-orange">🧾 Costs</div>
+        <div class="tc-title">Full Cost Transparency</div>
+        <p class="tc-desc">Materials, labour, permits, finishing — itemised line by line. You receive receipts for every spend. No mystery markups. No hidden charges. You know where every naira goes.</p>
+      </div>
+      <div class="trust-card">
+        <div class="tc-chip tc-ink">⚖️ Legal</div>
+        <div class="tc-title">Binding Legal Contracts</div>
+        <p class="tc-desc">Every project is backed by a signed agreement under Nigerian law. You receive a notarised original by DHL. Our in-house legal team is on record. Everything is enforceable.</p>
+      </div>
+    </div>
+    <div class="trust-bottom">
+      <div class="tb-left">
+        <div class="tb-title">Why we're safer than involving family</div>
+        <p>When you ask a family member to oversee construction, you put the relationship at risk alongside the money. We remove that problem entirely — we are your professional representative on the ground, with no family ties and full legal accountability.</p>
+      </div>
+      <div class="tb-right">
+        <div class="tb-row"><span class="tb-row-icon">✅</span> No family involvement required</div>
+        <div class="tb-row"><span class="tb-row-icon">✅</span> All contractors are vetted and contracted</div>
+        <div class="tb-row"><span class="tb-row-icon">✅</span> You never pay anyone directly in Nigeria</div>
+        <div class="tb-row"><span class="tb-row-icon">✅</span> Every payment is documented and receipted</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services" id="services">
+  <div class="wrap">
+    <div class="svc-head">
+      <div>
+        <span class="sec-label">What We Do</span>
+        <h2 class="sec-h">Every property service,<br>under one roof.</h2>
+      </div>
+      <p class="sec-p">One company. One point of contact. Full coverage from empty land to income-generating property.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <span class="svc-icon">🏗️</span>
+        <div class="svc-name">Build From Scratch</div>
+        <p class="svc-desc">Full construction management anywhere in Nigeria. Architect, contractors, materials, approvals — all handled and reported back weekly.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">🔨</span>
+        <div class="svc-name">Renovation & Modernisation</div>
+        <p class="svc-desc">Transform an existing or inherited property. Modernise, expand, repair, furnish, and prepare it for rental — managed remotely.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">🏢</span>
+        <div class="svc-name">Block of Flats & Commercial</div>
+        <p class="svc-desc">Build for rental income. We construct, tenant, manage, and transfer rent straight to your bank account monthly.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">🤝</span>
+        <div class="svc-name">Buy & Sell Property</div>
+        <p class="svc-desc">Source verified land or homes, handle due diligence, negotiate price, and complete the entire sale without you needing to fly in.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">🔭</span>
+        <div class="svc-name">Property Inspection</div>
+        <p class="svc-desc">Request a remote inspection of any land or property. We visit, drone it, photograph it, and deliver a full legal and physical report within 72 hours.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">📄</span>
+        <div class="svc-name">Title & Documentation</div>
+        <p class="svc-desc">C of O, Governor's Consent, building permits, deed of assignment, survey plans — processed correctly and shipped internationally to your door.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">🏘️</span>
+        <div class="svc-name">Property Management</div>
+        <p class="svc-desc">Already own property in Nigeria? We manage tenants, maintenance, rent collection, and wire transfers to you every month. You own it — we run it.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">📊</span>
+        <div class="svc-name">Client Dashboard</div>
+        <p class="svc-desc">Every client gets a secure login. Track milestones, view weekly photos and videos, monitor expenses, and access all documents from anywhere in the world.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT -->
+<section class="section invest" id="invest">
+  <div class="wrap">
+    <div class="invest-head">
+      <div>
+        <span class="sec-label">Property Investment</span>
+        <h2 class="sec-h">Start earning from Nigeria<br>without being there.</h2>
+      </div>
+      <p class="sec-p">Build once. Earn every month. We handle construction, tenants, and monthly transfers.</p>
+    </div>
+    <div class="invest-cards">
+      <div class="invest-card">
+        <div class="ic-thumb ic-flats">🏢</div>
+        <div class="ic-body">
+          <div class="ic-type">Block of Flats</div>
+          <div class="ic-title">6-Unit Apartment Block</div>
+          <div class="ic-loc">📍 Lekki Phase 2, Lagos</div>
+          <div class="ic-metrics">
+            <div><div class="icm-val">₦85M</div><div class="icm-label">Build Cost</div></div>
+            <div><div class="icm-val">₦9.6M</div><div class="icm-label">Annual Rent</div></div>
+            <div><div class="icm-val icm-green">11.3%</div><div class="icm-label">ROI / yr</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="invest-card">
+        <div class="ic-thumb ic-student">🎓</div>
+        <div class="ic-body">
+          <div class="ic-type">Student Housing</div>
+          <div class="ic-title">12-Room Student Hostel</div>
+          <div class="ic-loc">📍 University Road, Enugu</div>
+          <div class="ic-metrics">
+            <div><div class="icm-val">₦45M</div><div class="icm-label">Build Cost</div></div>
+            <div><div class="icm-val">₦7.2M</div><div class="icm-label">Annual Rent</div></div>
+            <div><div class="icm-val icm-green">16%</div><div class="icm-label">ROI / yr</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="invest-card">
+        <div class="ic-thumb ic-shortlet">🛋️</div>
+        <div class="ic-body">
+          <div class="ic-type">Short-Let Apartments</div>
+          <div class="ic-title">4-Unit Short-Let Complex</div>
+          <div class="ic-loc">📍 Maitama, Abuja</div>
+          <div class="ic-metrics">
+            <div><div class="icm-val">₦62M</div><div class="icm-label">Build Cost</div></div>
+            <div><div class="icm-val">₦14.4M</div><div class="icm-label">Annual Revenue</div></div>
+            <div><div class="icm-val icm-green">23%</div><div class="icm-label">ROI / yr</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section gallery" id="projects">
+  <div class="wrap">
+    <div class="gallery-head">
+      <div>
+        <span class="sec-label">Real Projects</span>
+        <h2 class="sec-h">Built by COD. Owned by<br>diaspora Nigerians.</h2>
+      </div>
+      <a href="#contact" class="btn-dark">View All Projects</a>
+    </div>
+    <div class="gallery-grid">
+      <div class="gi tall gi-bg1">
+        <div class="gi-inner">
+          <div>
+            <span class="gi-tag">5-Bed Duplex · Completed 2024</span>
+            <div class="gi-name">The Okonkwo Residence</div>
+            <div class="gi-sub">Asaba, Delta State · Client in London, UK</div>
+          </div>
+        </div>
+      </div>
+      <div class="gi gi-bg2">
+        <div class="gi-inner">
+          <div>
+            <span class="gi-tag">Block of Flats · 2024</span>
+            <div class="gi-name">Adeyemi Towers</div>
+            <div class="gi-sub">Ibadan · Client in Toronto</div>
+          </div>
+        </div>
+      </div>
+      <div class="gi gi-bg3">
+        <div class="gi-inner">
+          <div>
+            <span class="gi-tag">In Progress · 70%</span>
+            <div class="gi-name">Chukwu Family Home</div>
+            <div class="gi-sub">Enugu · Client in Houston</div>
+          </div>
+        </div>
+      </div>
+      <div class="gi gi-bg4">
+        <div class="gi-inner">
+          <div>
+            <span class="gi-tag">4-Bed Bungalow · 2023</span>
+            <div class="gi-name">The Aliyu Build</div>
+            <div class="gi-sub">Kaduna · Client in Dublin</div>
+          </div>
+        </div>
+      </div>
+      <div class="gi gi-bg5">
+        <div class="gi-inner">
+          <div>
+            <span class="gi-tag">Renovation · 2024</span>
+            <div class="gi-name">Eze Property Upgrade</div>
+            <div class="gi-sub">Owerri · Client in Oslo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testi">
+  <div class="wrap">
+    <div class="testi-head">
+      <span class="sec-label">Client Stories</span>
+      <h2 class="sec-h">Real people. Real homes.<br>Real relief.</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">"I tried twice before with relatives. Lost over £28,000 with nothing built. COD Homes built my 4-bedroom bungalow in Enugu in 14 months. I watched every video. The C of O arrived at my Manchester address by DHL. I cried holding it."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">AA</div>
+          <div>
+            <div class="tcard-name">Adaeze A.</div>
+            <div class="tcard-where">Manchester, UK → Enugu State</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">"I wanted a block of 6 flats in Lagos as a retirement plan. I'm in Houston — flying every month isn't realistic. COD handled everything. Four units are already tenanted. Rent arrives in my account monthly. I haven't visited since handover."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">BO</div>
+          <div>
+            <div class="tcard-name">Babatunde O.</div>
+            <div class="tcard-where">Houston, USA → Lagos Island</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">"My parents' house needed full renovation. I couldn't involve family — it always causes lasting problems. COD sent videos every week. The house looks better than it ever has. No drama. No debt. Nothing owed to anyone."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">CN</div>
+          <div>
+            <div class="tcard-name">Chidinma N.</div>
+            <div class="tcard-where">Toronto, Canada → Anambra State</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERIFIED LANDS -->
+<section class="section lands" id="lands">
+  <div class="wrap">
+    <div class="lands-head">
+      <div>
+        <span class="sec-label">Verified Land Listings</span>
+        <h2 class="sec-h">Land you can buy<br>without fear of fraud.</h2>
+        <p class="sec-p">Every listing is physically inspected, government-title verified, and cleared before we list it.</p>
+      </div>
+      <a href="#contact" class="btn-dark">See All Listings</a>
+    </div>
+    <div class="land-table">
+      <div class="land-thead">
+        <div>Property</div>
+        <div>Size</div>
+        <div>Price</div>
+        <div>Status</div>
+        <div></div>
+      </div>
+      <div class="land-row">
+        <div><div class="lr-name">Sangotedo Plot</div><div class="lr-loc">📍 Ajah, Lagos State</div></div>
+        <div class="lr-size">450 sqm</div>
+        <div class="lr-price"><div class="lr-size">₦18,500,000</div><div class="lr-sub">≈ £9,800 / $12,400</div></div>
+        <div><span class="lr-badge">✓ Verified</span></div>
+        <div><a href="#contact" class="lr-btn">Enquire</a></div>
+      </div>
+      <div class="land-row">
+        <div><div class="lr-name">Lugbe Estate Land</div><div class="lr-loc">📍 Lugbe, Abuja FCT</div></div>
+        <div class="lr-size">300 sqm</div>
+        <div class="lr-price"><div class="lr-size">₦22,000,000</div><div class="lr-sub">≈ £11,600 / $14,700</div></div>
+        <div><span class="lr-badge">✓ Verified</span></div>
+        <div><a href="#contact" class="lr-btn">Enquire</a></div>
+      </div>
+      <div class="land-row">
+        <div><div class="lr-name">GRA Corner Piece</div><div class="lr-loc">📍 Old GRA, Port Harcourt</div></div>
+        <div class="lr-size">600 sqm</div>
+        <div class="lr-price"><div class="lr-size">₦35,000,000</div><div class="lr-sub">≈ £18,500 / $23,400</div></div>
+        <div><span class="lr-badge">✓ Verified</span></div>
+        <div><a href="#contact" class="lr-btn">Enquire</a></div>
+      </div>
+      <div class="land-row">
+        <div><div class="lr-name">Independence Layout</div><div class="lr-loc">📍 Independence Layout, Enugu</div></div>
+        <div class="lr-size">450 sqm</div>
+        <div class="lr-price"><div class="lr-size">₦14,000,000</div><div class="lr-sub">≈ £7,400 / $9,400</div></div>
+        <div><span class="lr-badge">✓ Verified</span></div>
+        <div><a href="#contact" class="lr-btn">Enquire</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSPECTION -->
+<section class="section inspect">
+  <div class="wrap">
+    <div class="inspect-inner">
+      <div>
+        <span class="sec-label">Property Inspection</span>
+        <h2 class="sec-h">Inspect any property<br>in Nigeria remotely.</h2>
+        <p class="sec-p">You don't need to travel. We visit, drone it, document it, and deliver a full report within 72 hours.</p>
+        <div class="insp-features">
+          <div class="insp-row">
+            <span class="insp-icon">🚁</span>
+            <div><div class="insp-title">Drone Aerial Footage</div><div class="insp-desc">HD drone video covering the full plot and surrounding neighbourhood in detail.</div></div>
+          </div>
+          <div class="insp-row">
+            <span class="insp-icon">📸</span>
+            <div><div class="insp-title">Ground-Level Photography</div><div class="insp-desc">50+ photos — the property, boundary lines, access roads, and nearby infrastructure.</div></div>
+          </div>
+          <div class="insp-row">
+            <span class="insp-icon">⚖️</span>
+            <div><div class="insp-title">Legal Title Check</div><div class="insp-desc">Government records verified. Any fraud risks or disputed ownership flagged immediately.</div></div>
+          </div>
+          <div class="insp-row">
+            <span class="insp-icon">🗺️</span>
+            <div><div class="insp-title">Neighbourhood Review</div><div class="insp-desc">Infrastructure, flood risk, security assessment, and development potential report.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="insp-form">
+        <div class="form-title">Request an Inspection</div>
+        <p class="form-sub">We'll be in touch within 24 hours to confirm and schedule.</p>
+        <div class="ff">
+          <label>Your Name</label>
+          <input type="text" placeholder="Full name">
+        </div>
+        <div class="ff">
+          <label>Your Country</label>
+          <select>
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Canada</option>
+            <option>Germany</option>
+            <option>Ireland</option>
+            <option>Norway</option>
+            <option>South Africa</option>
+            <option>UAE</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="ff">
+          <label>Property Location in Nigeria</label>
+          <textarea placeholder="Address or description of the location..."></textarea>
+        </div>
+        <div class="ff">
+          <label>WhatsApp / Email</label>
+          <input type="text" placeholder="+44... or email address">
+        </div>
+        <button class="ff-submit">Send Inspection Request →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <div class="contact-inner">
+      <div>
+        <div class="ct-head">
+          <span class="sec-label">Get Started</span>
+          <h2 class="sec-h">Talk to us.<br>It's free.</h2>
+        </div>
+        <p class="ct-para">Tell us your situation — the property, the location, the budget, the timeline. We'll be completely honest with you about what's possible and exactly how we'd approach it. No pressure, no commitment.</p>
+        <div class="ct-channels">
+          <a href="https://wa.me/234XXXXXXXXX" class="ch" target="_blank">
+            <div class="ch-left">
+              <div class="ch-icon">💬</div>
+              <div><span class="ch-label">WhatsApp</span><span class="ch-val">Message us directly</span></div>
+            </div>
+            <span class="ch-arrow">→</span>
+          </a>
+          <a href="/cdn-cgi/l/email-protection#7a121f1616153a19151e1215171f0914131d1f08131b54191517" class="ch">
+            <div class="ch-left">
+              <div class="ch-icon">📧</div>
+              <div><span class="ch-label">Email</span><span class="ch-val"><span class="__cf_email__" data-cfemail="076f626b6b68476468636f686a6274696e6062756e662964686a">[email&#160;protected]</span></span></div>
+            </div>
+            <span class="ch-arrow">→</span>
+          </a>
+          <a href="tel:+234XXXXXXXXX" class="ch">
+            <div class="ch-left">
+              <div class="ch-icon">📞</div>
+              <div><span class="ch-label">Phone</span><span class="ch-val">+234 XXX XXX XXXX</span></div>
+            </div>
+            <span class="ch-arrow">→</span>
+          </a>
+          <a href="#" class="ch">
+            <div class="ch-left">
+              <div class="ch-icon">📅</div>
+              <div><span class="ch-label">Video Call</span><span class="ch-val">Book a time that works for you</span></div>
+            </div>
+            <span class="ch-arrow">→</span>
+          </a>
+        </div>
+      </div>
+      <div class="ct-right">
+        <div class="ctr-title">Send us a message</div>
+        <p class="ctr-sub">We respond within a few hours, usually much faster.</p>
+        <div class="ff"><label>Your Name</label><input type="text" placeholder="Full name"></div>
+        <div class="ff"><label>Country You're Based In</label>
+          <select>
+            <option>United Kingdom</option><option>United States</option>
+            <option>Canada</option><option>Germany</option>
+            <option>Ireland</option><option>Norway</option>
+            <option>South Africa</option><option>UAE</option><option>Other</option>
+          </select>
+        </div>
+        <div class="ff"><label>What You Need</label>
+          <select>
+            <option>Build a new house</option>
+            <option>Renovate existing property</option>
+            <option>Buy land or property</option>
+            <option>Investment / block of flats</option>
+            <option>Property inspection</option>
+            <option>Property management</option>
+            <option>Documentation help</option>
+          </select>
+        </div>
+        <div class="ff"><label>WhatsApp or Email</label><input type="text" placeholder="+44... or email"></div>
+        <div class="ff"><label>Tell us more (optional)</label><textarea placeholder="Budget, location, any details..."></textarea></div>
+        <button class="ff-submit">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNALS -->
+<section class="section signals">
+  <div class="wrap">
+    <div class="sig-head">
+      <span class="sec-label">Why Trust COD Homes</span>
+      <h2 class="sec-h">Real company. Real accountability.</h2>
+    </div>
+    <div class="sig-row">
+      <div class="sig-item"><span class="sig-emoji">🏛️</span><div class="sig-label">CAC Registered</div><div class="sig-val">RC: XXXXXXX</div></div>
+      <div class="sig-item"><span class="sig-emoji">📍</span><div class="sig-label">Physical Office</div><div class="sig-val">Lagos, Nigeria</div></div>
+      <div class="sig-item"><span class="sig-emoji">⚖️</span><div class="sig-label">In-House Legal Team</div><div class="sig-val">Licensed solicitors</div></div>
+      <div class="sig-item"><span class="sig-emoji">👷</span><div class="sig-label">COREN Engineers</div><div class="sig-val">Certified & registered</div></div>
+      <div class="sig-item"><span class="sig-emoji">📐</span><div class="sig-label">ARCON Architects</div><div class="sig-val">Fully accredited</div></div>
+      <div class="sig-item"><span class="sig-emoji">🔒</span><div class="sig-label">Escrow Protected</div><div class="sig-val">Every single project</div></div>
+    </div>
+    <div class="diaspora-band">
+      <div>
+        <div class="db-label">Currently serving clients in</div>
+        <div class="db-flags">
+          <span class="db-flag">🇬🇧 UK</span>
+          <span class="db-flag">🇺🇸 USA</span>
+          <span class="db-flag">🇨🇦 Canada</span>
+          <span class="db-flag">🇩🇪 Germany</span>
+          <span class="db-flag">🇮🇪 Ireland</span>
+          <span class="db-flag">🇳🇴 Norway</span>
+          <span class="db-flag">🇮🇹 Italy</span>
+          <span class="db-flag">🇿🇦 South Africa</span>
+          <span class="db-flag">🇦🇪 UAE</span>
+          <span class="db-flag">🌍 + more</span>
+        </div>
+      </div>
+      <a href="#contact" class="btn-dark">Start Your Project</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="ft-logo"><div class="ft-logo-pip"></div>COD Homes Nigeria</div>
+      <p class="ft-about">Founded by Christian Okechukwu David. The property platform built for Nigerians abroad who want to build, buy, invest, and own back home — without the risk.</p>
+    </div>
+    <div class="ft-col">
+      <h6>Services</h6>
+      <a href="#">Build From Scratch</a>
+      <a href="#">Renovation</a>
+      <a href="#">Block of Flats</a>
+      <a href="#">Buy & Sell</a>
+      <a href="#">Documentation</a>
+      <a href="#">Property Management</a>
+    </div>
+    <div class="ft-col">
+      <h6>Platform</h6>
+      <a href="#">Cost Calculator</a>
+      <a href="#">Land Listings</a>
+      <a href="#">Investment Projects</a>
+      <a href="#">Book Inspection</a>
+      <a href="#">Client Dashboard</a>
+      <a href="#">Book Consultation</a>
+    </div>
+    <div class="ft-col">
+      <h6>Locations</h6>
+      <a href="#">Lagos</a>
+      <a href="#">Abuja</a>
+      <a href="#">Port Harcourt</a>
+      <a href="#">Enugu</a>
+      <a href="#">Ibadan</a>
+      <a href="#">All 36 States</a>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span class="fb-copy">© 2025 COD Homes Nigeria Ltd. All rights reserved.</span>
+    <span class="fb-cac">✓ CAC Registered · RC: XXXXXXX</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function toggleMenu(){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('mobileMenu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
+function closeMenu(){
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow='';
+}
+function runCalc(){
+  const city=document.getElementById('calcCity').value;
+  const type=document.getElementById('calcType').value;
+  const beds=document.getElementById('calcBeds').value;
+  const land=document.getElementById('calcLand').value;
+  const finish=document.getElementById('calcFinish').value;
+  const cur=document.getElementById('calcCurrency').value;
+  if(!city||!type||!beds||!land||!finish){alert('Please fill in all fields.');return;}
+  const cm={lagos:1.4,abuja:1.3,ph:1.15,enugu:1.0,ibadan:1.0,other:0.95};
+  const tm={bungalow:1.0,duplex:1.65,triplex:2.3,flats:3.0,commercial:2.6};
+  const bm={2:1.0,3:1.3,4:1.6,5:1.9,6:2.2};
+  const fm={basic:1.0,standard:1.3,premium:1.65,luxury:2.1};
+  const la={300:180,450:260,600:350,1000:580};
+  const tl={bungalow:{2:'8–10 mo',3:'10–12 mo',4:'12–14 mo',5:'14–16 mo',6:'16–18 mo'},duplex:{2:'10–13 mo',3:'12–15 mo',4:'14–18 mo',5:'16–20 mo',6:'18–22 mo'},triplex:{2:'14–18 mo',3:'16–20 mo',4:'18–22 mo',5:'20–24 mo',6:'22–26 mo'},flats:{2:'18–24 mo',3:'20–26 mo',4:'22–28 mo',5:'24–30 mo',6:'26–32 mo'},commercial:{2:'18–24 mo',3:'20–26 mo',4:'22–28 mo',5:'24–30 mo',6:'26–32 mo'}};
+  const base=170000;
+  const area=la[land]||200;
+  const raw=area*base*(cm[city]||1)*(tm[type]||1)*(bm[beds]||1)*(fm[finish]||1);
+  const cost=Math.round(raw/500000)*500000;
+  const fee=cost*0.10;
+  const rates={ngn:1,gbp:0.00053,usd:0.00067,cad:0.00091,eur:0.00062};
+  const syms={ngn:'₦',gbp:'£',usd:'$',cad:'CA$',eur:'€'};
+  const r=rates[cur]||1;const s=syms[cur]||'₦';
+  function fmt(n){
+    const v=n*r;
+    if(cur==='ngn'){return v>=1e9?s+(v/1e9).toFixed(2)+'B':s+(v/1e6).toFixed(1)+'M';}
+    return s+Math.round(v).toLocaleString();
+  }
+  document.getElementById('crCost').textContent=fmt(cost);
+  document.getElementById('crTime').textContent=(tl[type])}
